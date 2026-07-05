@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { services } from "../data/services";
+---
+
+<Layout
+  title="Servicios de Placas Solares en Sevilla | Solar Sevilla Pro"
+  description="Instalación residencial, comercial e industrial de placas solares en Sevilla, además de mantenimiento y revisión de instalaciones existentes. Presupuesto gratuito."
+>
+  <section class="section intro">
+    <div class="container">
+      <span class="eyebrow">Servicios</span>
+      <h1>Servicios de instalación de placas solares en Sevilla</h1>
+      <p>
+        Trabajamos tres líneas de servicio: instalación residencial, instalación
+        comercial e industrial, y mantenimiento de instalaciones ya existentes. Cada
+        proyecto empieza con un estudio de tu consumo real antes de proponerte nada.
+      </p>
+    </div>
+  </section>
+
+  {
+    services.map((service, index) => (
+      <section class:list={["section", "service", { alt: index % 2 === 1 }]} id={service.slug}>
+        <div class="container service-grid">
+          <div class="copy">
+            <h2>{service.title}</h2>
+            {service.description.map((paragraph) => <p>{paragraph}</p>)}
+            <ul class="benefits">
+              {service.benefits.map((benefit) => (
+                <li>
+                  <Icon name="check" class="check" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+            <a class="btn btn-primary" href="/contacto">
+              Solicitar presupuesto para {service.title.toLowerCase()}
+            </a>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</Layout>
+
+<style>
+  .intro p {
+    max-width: 60ch;
+  }
+
+  .service.alt {
+    background: var(--color-offwhite);
+  }
+
+  .service-grid {
+    max-width: 760px;
+  }
+
+  .copy h2 {
+    color: var(--color-navy);
+  }
+
+  .benefits {
+    list-style: none;
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .benefits :global(.check) {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+    background: var(--color-solar-yellow);
+    border-radius: 50%;
+    padding: 4px;
+    margin-top: 0.1rem;
+  }
+
+  .benefits span {
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import { capital, provinceMunicipalities } from "../data/coverage";
+
+const allAreas = [capital.name, ...provinceMunicipalities.map((town) => town.name)];
+
+const localBusinessSchema = {
+  "@type": "LocalBusiness",
+  name: site.name,
+  telephone: site.phoneHref.replace("tel:", ""),
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressCountry: "ES",
+  },
+  areaServed: allAreas.map((name) => ({
+    "@type": "City",
+    name,
+  })),
+};
+---
+
+<Layout
+  title="Zona de Cobertura | Instalación de Placas Solares en Sevilla y Provincia"
+  description="Instalamos placas solares en Sevilla capital y en los principales municipios de la provincia: Dos Hermanas, Alcalá de Guadaíra, Utrera, Écija, Carmona y más."
+  extraSchema={[localBusinessSchema]}
+>
+  <section class="section intro">
+    <div class="container">
+      <span class="eyebrow">Zona de cobertura</span>
+      <h1>Instalamos placas solares en Sevilla capital y en toda la provincia</h1>
+      <p>
+        Nuestro equipo se desplaza a toda la provincia de Sevilla. Los plazos de
+        visita e instalación varían según la distancia a cada municipio, pero
+        gestionamos el proyecto completo estés donde estés.
+      </p>
+    </div>
+  </section>
+
+  <section class="section capital-section">
+    <div class="container capital-card">
+      <span class="badge">Zona principal</span>
+      <h2>{capital.name}</h2>
+      <p>{capital.blurb}</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Municipios de la provincia donde trabajamos</h2>
+      <div class="towns-grid">
+        {
+          provinceMunicipalities.map((town) => (
+            <article class="town-card">
+              <h3>{town.name}</h3>
+              <p>{town.blurb}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container cta-inner">
+      <div>
+        <h2>¿No ves tu municipio en la lista?</h2>
+        <p>Llámanos y te confirmamos disponibilidad y plazos para tu zona.</p>
+      </div>
+      <a class="btn btn-primary" href="/contacto">Consultar disponibilidad</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro p {
+    max-width: 60ch;
+  }
+
+  .capital-card {
+    background: var(--color-navy);
+    color: var(--color-white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 760px;
+  }
+
+  .capital-card h2 {
+    color: var(--color-white);
+  }
+
+  .capital-card p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--color-solar-yellow);
+    color: var(--color-navy);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .towns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .town-card {
+    background: var(--color-white);
+    border: 1px solid #e6e9f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .town-card h3 {
+    color: var(--color-navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .town-card p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--color-offwhite);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+
+  .cta-inner h2 {
+    color: var(--color-navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .cta-inner p {
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .towns-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

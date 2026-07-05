@@ -1,0 +1,148 @@
+---
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+---
+
+<form id="quote-form" class="contact-form">
+  <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="subject" value="Nueva solicitud de presupuesto - Solar Sevilla Pro" />
+  <input
+    type="checkbox"
+    name="botcheck"
+    class="botcheck"
+    tabindex="-1"
+    autocomplete="off"
+  />
+
+  <div class="field">
+    <label for="name">Nombre *</label>
+    <input id="name" name="name" type="text" required />
+  </div>
+
+  <div class="field">
+    <label for="phone">Teléfono *</label>
+    <input id="phone" name="phone" type="tel" required />
+  </div>
+
+  <div class="field">
+    <label for="installation_type">Tipo de instalación *</label>
+    <select id="installation_type" name="installation_type" required>
+      <option value="">Selecciona una opción</option>
+      <option value="Residencial">Residencial</option>
+      <option value="Comercial">Comercial</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="message">Mensaje *</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Solicitar presupuesto gratuito</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  const form = document.getElementById("quote-form") as HTMLFormElement | null;
+  const status = form?.querySelector<HTMLParagraphElement>(".form-status");
+  const submitButton = form?.querySelector<HTMLButtonElement>("button[type=submit]");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!status || !submitButton) return;
+
+    const formData = new FormData(form);
+    submitButton.disabled = true;
+    submitButton.textContent = "Enviando...";
+    status.textContent = "";
+    status.classList.remove("error", "success");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        status.textContent = "Gracias. Hemos recibido tu solicitud y te contactaremos en breve.";
+        status.classList.add("success");
+        form.reset();
+      } else {
+        status.textContent = "No se ha podido enviar la solicitud. Prueba de nuevo o llámanos directamente.";
+        status.classList.add("error");
+      }
+    } catch {
+      status.textContent = "Error de conexión. Prueba de nuevo o llámanos directamente.";
+      status.classList.add("error");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Solicitar presupuesto gratuito";
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    max-width: 560px;
+  }
+
+  .botcheck {
+    display: none;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-navy);
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #d3d8e3;
+    border-radius: 8px;
+    background: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid var(--color-solar-yellow);
+    outline-offset: 1px;
+  }
+
+  button {
+    align-self: flex-start;
+  }
+
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .form-status {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .form-status.success {
+    color: #1a7a3c;
+  }
+
+  .form-status.error {
+    color: #b3261e;
+  }
+</style>

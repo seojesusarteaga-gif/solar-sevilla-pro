@@ -1,0 +1,86 @@
+---
+import { provinceMunicipalities } from "../data/coverage";
+---
+
+<section class="section">
+  <div class="container coverage">
+    <div>
+      <span class="eyebrow">Zona de cobertura</span>
+      <h2>Instalamos en Sevilla capital y en toda la provincia</h2>
+      <p>
+        Damos servicio en la ciudad de Sevilla y en los principales municipios de la
+        provincia, adaptando los tiempos de visita e instalación a cada zona.
+      </p>
+      <ul class="municipalities">
+        <li class="capital">Sevilla capital</li>
+        {provinceMunicipalities.map((town) => <li>{town.name}</li>)}
+      </ul>
+      <a class="btn btn-primary" href="/zona-cobertura">Consulta tu municipio</a>
+    </div>
+    <div class="map" aria-hidden="true">
+      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M60 30 L220 20 L260 90 L230 160 L250 220 L140 240 L40 200 L20 110 Z"
+          fill="#eef1f8"
+          stroke="#0a2342"
+          stroke-width="3"
+        />
+        <circle cx="140" cy="120" r="9" fill="#f5c518" stroke="#0a2342" stroke-width="2" />
+        <circle cx="90" cy="80" r="5" fill="#0a2342" />
+        <circle cx="190" cy="70" r="5" fill="#0a2342" />
+        <circle cx="200" cy="150" r="5" fill="#0a2342" />
+        <circle cx="100" cy="170" r="5" fill="#0a2342" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .coverage {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .municipalities {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0 0 1.75rem;
+    padding: 0;
+  }
+
+  .municipalities li {
+    background: var(--color-offwhite);
+    border: 1px solid #e6e9f0;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+    color: var(--color-navy);
+  }
+
+  .municipalities .capital {
+    background: var(--color-navy);
+    color: var(--color-white);
+    font-weight: 700;
+  }
+
+  .map svg {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  @media (max-width: 860px) {
+    .coverage {
+      grid-template-columns: 1fr;
+    }
+
+    .map {
+      order: -1;
+    }
+  }
+</style>

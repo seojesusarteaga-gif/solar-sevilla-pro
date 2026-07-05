@@ -1,0 +1,66 @@
+---
+import Icon from "./Icon.astro";
+import { whyUs } from "../data/why-us";
+---
+
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">Por qué nosotros</span>
+    <h2>Razones para confiar tu instalación a Solar Sevilla Pro</h2>
+    <div class="grid">
+      {
+        whyUs.map((item) => (
+          <article class="item">
+            <Icon name="check" class="icon" />
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <a class="btn btn-primary" href="/por-que-nosotros">Conócenos mejor</a>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin: 2rem 0 2.5rem;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .item :global(.icon) {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+    background: var(--color-solar-yellow);
+    border-radius: 50%;
+    padding: 6px;
+  }
+
+  .item h3 {
+    color: var(--color-navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .item p {
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

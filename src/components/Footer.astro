@@ -1,0 +1,161 @@
+---
+import Icon from "./Icon.astro";
+import { navLinks } from "../data/nav";
+import { site } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="logo">
+        <Icon name="sun" class="logo-icon" />
+        <span>{site.name}</span>
+      </div>
+      <p class="tagline">Instalación y mantenimiento de placas solares en Sevilla.</p>
+    </div>
+
+    <nav aria-label="Enlaces del pie de página">
+      <h2>Navegación</h2>
+      <ul>
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="contact">
+      <h2>Contacto</h2>
+      <ul>
+        <li>
+          <a href={site.phoneHref}>
+            <Icon name="phone" />
+            <span>{site.phone}</span>
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`}>
+            <Icon name="mail" />
+            <span>{site.email}</span>
+          </a>
+        </li>
+        <li>
+          <Icon name="location" />
+          <span>{site.address.street}, {site.address.postalCode} {site.address.city}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <p>&copy; {year} {site.name}. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-navy);
+    color: var(--color-white);
+    margin-top: 4rem;
+  }
+
+  .footer-grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 2rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.4fr;
+    gap: 2rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .logo :global(.logo-icon) {
+    width: 22px;
+    height: 22px;
+    color: var(--color-solar-yellow);
+  }
+
+  .tagline {
+    margin-top: 0.75rem;
+    opacity: 0.75;
+    font-size: 0.9rem;
+    max-width: 30ch;
+  }
+
+  h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-solar-yellow);
+    margin: 0 0 0.9rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  a {
+    color: var(--color-white);
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  a:hover {
+    opacity: 1;
+    color: var(--color-solar-yellow);
+  }
+
+  .contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    opacity: 0.85;
+    font-size: 0.95rem;
+  }
+
+  .contact li :global(svg) {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--color-solar-yellow);
+  }
+
+  .contact a {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    opacity: 1;
+  }
+
+  .bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.25rem;
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

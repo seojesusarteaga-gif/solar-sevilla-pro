@@ -1,0 +1,51 @@
+---
+import { services } from "../data/services";
+---
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Servicios</span>
+    <h2>Soluciones fotovoltaicas para cada necesidad</h2>
+    <div class="grid">
+      {
+        services.map((service) => (
+          <article class="card">
+            <h3>{service.title}</h3>
+            <p>{service.summary}</p>
+          </article>
+        ))
+      }
+    </div>
+    <a class="btn btn-primary" href="/servicios">Ver todos los servicios</a>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0 2.5rem;
+  }
+
+  .card {
+    background: var(--color-white);
+    border: 1px solid #e6e9f0;
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+
+  .card h3 {
+    color: var(--color-navy);
+  }
+
+  .card p {
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

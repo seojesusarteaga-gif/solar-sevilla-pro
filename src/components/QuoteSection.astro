@@ -1,0 +1,26 @@
+---
+import ContactForm from "./ContactForm.astro";
+---
+
+<section id="presupuesto" class="section section-alt quote">
+  <div class="container">
+    <span class="eyebrow">Presupuesto gratuito</span>
+    <h2>Solicita tu presupuesto sin compromiso</h2>
+    <p>
+      Cuéntanos qué tipo de instalación necesitas y te contactaremos en menos de 24
+      horas con un presupuesto a medida.
+    </p>
+    <ContactForm />
+  </div>
+</section>
+
+<style>
+  .quote h2 {
+    max-width: 40ch;
+  }
+
+  .quote > .container > p {
+    max-width: 48ch;
+    margin-bottom: 2rem;
+  }
+</style>

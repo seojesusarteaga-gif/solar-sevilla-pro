@@ -1,0 +1,72 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: readonly FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2>Dudas habituales sobre placas solares en Sevilla</h2>
+    <div class="faq-list">
+      {
+        items.map((item) => (
+          <details class="faq-item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .faq-item {
+    background: var(--color-white);
+    border: 1px solid #e6e9f0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--color-navy);
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1.2em;
+    color: var(--color-solar-yellow);
+    font-weight: 800;
+  }
+
+  .faq-item[open] summary::before {
+    content: "−";
+  }
+
+  .faq-item p {
+    margin: 0.75rem 0 0 1.2em;
+  }
+</style>

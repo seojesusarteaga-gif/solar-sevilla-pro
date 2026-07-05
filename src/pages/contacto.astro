@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../data/site";
+---
+
+<Layout
+  title="Contacto | Solar Sevilla Pro — Instalación de placas solares en Sevilla"
+  description="Solicita presupuesto gratuito para instalar placas solares en Sevilla. Llámanos al 954 123 456 o rellena el formulario y te contactamos en breve."
+>
+  <section class="section contact">
+    <div class="container contact-grid">
+      <div>
+        <span class="eyebrow">Contacto</span>
+        <h1>Pide tu presupuesto gratuito</h1>
+        <p>
+          Cuéntanos qué tipo de instalación necesitas y te contactaremos con un
+          presupuesto sin compromiso.
+        </p>
+        <ContactForm />
+      </div>
+
+      <aside class="details">
+        <h2>Datos de contacto</h2>
+        <a class="big-contact" href={site.phoneHref}>
+          <Icon name="phone" />
+          <span>{site.phone}</span>
+        </a>
+        <a class="big-contact" href={`mailto:${site.email}`}>
+          <Icon name="mail" />
+          <span>{site.email}</span>
+        </a>
+        <div class="address">
+          <Icon name="location" />
+          <span>{site.address.street}, {site.address.postalCode} {site.address.city}</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .details {
+    background: var(--color-offwhite);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .big-contact {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--color-navy);
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .big-contact :global(svg) {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+  }
+
+  .address {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    color: var(--color-text-muted);
+  }
+
+  .address :global(svg) {
+    width: 20px;
+    height: 20px;
+    color: var(--color-navy);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

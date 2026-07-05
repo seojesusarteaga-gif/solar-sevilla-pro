@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { whyUs } from "../data/why-us";
+
+const stats = [
+  { value: "+10", label: "años de experiencia en autoconsumo" },
+  { value: "+350", label: "instalaciones realizadas en Sevilla y provincia" },
+  { value: "25 años", label: "de garantía de producto en los paneles" },
+  { value: "24h", label: "de plazo de respuesta para tu presupuesto" },
+];
+---
+
+<Layout
+  title="Por Qué Elegirnos | Solar Sevilla Pro — Instalación de Placas Solares"
+  description="Instaladores certificados en Sevilla, presupuesto gratuito en 24h y financiación disponible. Más de 350 instalaciones realizadas en la provincia de Sevilla."
+>
+  <section class="section intro">
+    <div class="container">
+      <span class="eyebrow">Por qué nosotros</span>
+      <h1>Razones para confiar tu instalación a Solar Sevilla Pro</h1>
+      <p>
+        Instalar placas solares es una decisión a largo plazo. Por eso te contamos,
+        sin rodeos, cómo trabajamos y qué puedes esperar de nosotros antes de que
+        firmes nada.
+      </p>
+    </div>
+  </section>
+
+  <section class="section stats-section section-alt">
+    <div class="container stats-grid">
+      {
+        stats.map((stat) => (
+          <div class="stat">
+            <span class="value">{stat.value}</span>
+            <span class="label">{stat.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    whyUs.map((item, index) => (
+      <section class:list={["section", "reason", { alt: index % 2 === 1 }]}>
+        <div class="container reason-grid">
+          <Icon name="check" class="reason-icon" />
+          <div>
+            <h2>{item.title}</h2>
+            <p>{item.detail}</p>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section cta-section">
+    <div class="container cta-inner">
+      <div>
+        <h2>¿Hablamos de tu proyecto?</h2>
+        <p>Cuéntanos qué necesitas y te preparamos un presupuesto gratuito.</p>
+      </div>
+      <a class="btn btn-primary" href="/contacto">Pide tu presupuesto gratuito</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro p {
+    max-width: 60ch;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .stat .value {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-navy);
+  }
+
+  .stat .label {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .reason.alt {
+    background: var(--color-offwhite);
+  }
+
+  .reason-grid {
+    display: flex;
+    gap: 1.5rem;
+    max-width: 760px;
+  }
+
+  .reason-grid :global(.reason-icon) {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+    background: var(--color-solar-yellow);
+    border-radius: 50%;
+    padding: 7px;
+  }
+
+  .reason-grid h2 {
+    color: var(--color-navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .reason-grid p {
+    margin: 0;
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--color-navy);
+    color: var(--color-white);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+
+  .cta-inner h2 {
+    color: var(--color-white);
+    margin-bottom: 0.3rem;
+  }
+
+  .cta-inner p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

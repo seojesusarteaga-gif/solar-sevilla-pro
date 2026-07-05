@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import ServicesTeaser from "../components/ServicesTeaser.astro";
+import WhyUsTeaser from "../components/WhyUsTeaser.astro";
+import CoverageTeaser from "../components/CoverageTeaser.astro";
+import QuoteSection from "../components/QuoteSection.astro";
+import Faq from "../components/Faq.astro";
+import { faq } from "../data/faq";
+---
+
+<Layout
+  title="Instalación de Placas Solares en Sevilla | Solar Sevilla Pro"
+  description="Instalación de placas solares en Sevilla capital y provincia. Presupuesto gratuito en 24h, instaladores certificados y financiación disponible. Llama al 954 123 456."
+  faq={faq}
+>
+  <Hero />
+  <WhyUsTeaser />
+  <ServicesTeaser />
+  <CoverageTeaser />
+  <Faq items={faq} />
+  <QuoteSection />
+</Layout>

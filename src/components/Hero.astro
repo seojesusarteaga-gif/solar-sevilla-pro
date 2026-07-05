@@ -1,0 +1,129 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site";
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="copy">
+      <span class="eyebrow">Placas solares en Sevilla</span>
+      <h1>Instalación de placas solares en Sevilla</h1>
+      <p>
+        Reduce tu factura eléctrica con una instalación fotovoltaica a medida.
+        Estudiamos tu consumo, nos encargamos de la instalación y la legalización, y
+        te acompañamos desde el primer día en Sevilla capital y en toda la provincia.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#presupuesto">Solicitar presupuesto gratis</a>
+        <a class="btn btn-secondary" href={site.phoneHref}>
+          <Icon name="phone" />
+          <span>{site.phone}</span>
+        </a>
+      </div>
+      <ul class="trust">
+        <li><Icon name="check" /> Instaladores certificados en Sevilla</li>
+        <li><Icon name="check" /> Presupuesto gratuito en 24h</li>
+        <li><Icon name="check" /> Financiación disponible</li>
+      </ul>
+    </div>
+
+    <div class="art" aria-hidden="true">
+      <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="200" width="320" height="14" rx="4" fill="#ffffff" opacity="0.15" />
+        <g transform="translate(70,120)">
+          <rect x="0" y="0" width="120" height="70" rx="6" fill="#123a68" stroke="#f5c518" stroke-width="3" />
+          <line x1="30" y1="0" x2="30" y2="70" stroke="#f5c518" stroke-width="2" />
+          <line x1="60" y1="0" x2="60" y2="70" stroke="#f5c518" stroke-width="2" />
+          <line x1="90" y1="0" x2="90" y2="70" stroke="#f5c518" stroke-width="2" />
+          <line x1="0" y1="35" x2="120" y2="35" stroke="#f5c518" stroke-width="2" />
+        </g>
+        <g transform="translate(210,90)">
+          <rect x="0" y="0" width="120" height="100" rx="6" fill="#123a68" stroke="#f5c518" stroke-width="3" />
+          <line x1="30" y1="0" x2="30" y2="100" stroke="#f5c518" stroke-width="2" />
+          <line x1="60" y1="0" x2="60" y2="100" stroke="#f5c518" stroke-width="2" />
+          <line x1="90" y1="0" x2="90" y2="100" stroke="#f5c518" stroke-width="2" />
+          <line x1="0" y1="33" x2="120" y2="33" stroke="#f5c518" stroke-width="2" />
+          <line x1="0" y1="66" x2="120" y2="66" stroke="#f5c518" stroke-width="2" />
+        </g>
+        <circle cx="320" cy="50" r="30" fill="#f5c518" />
+        <g stroke="#f5c518" stroke-width="4" stroke-linecap="round">
+          <line x1="320" y1="0" x2="320" y2="12" />
+          <line x1="365" y1="50" x2="353" y2="50" />
+          <line x1="349" y1="21" x2="341" y2="29" />
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(160deg, var(--color-navy), var(--color-navy-light));
+    color: var(--color-white);
+    padding: 4.5rem 0;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+  }
+
+  .hero p {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 48ch;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .trust {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .trust li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .trust :global(svg) {
+    width: 18px;
+    height: 18px;
+    color: var(--color-solar-yellow);
+    flex-shrink: 0;
+  }
+
+  .art svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .art {
+      order: -1;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+  }
+</style>
