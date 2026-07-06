@@ -1,0 +1,262 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/Icon.astro";
+import { site } from "../../data/site";
+import { services } from "../../data/services";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+const serviceSchema = {
+  "@type": "Service",
+  serviceType: service.title,
+  name: service.title,
+  description: service.metaDescription,
+  provider: {
+    "@type": "Organization",
+    name: site.name,
+    telephone: site.phoneHref.replace("tel:", ""),
+    email: site.email,
+  },
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: "Provincia de Sevilla",
+  },
+};
+---
+
+<Layout title={service.metaTitle} description={service.metaDescription} extraSchema={[serviceSchema]}>
+  <section class="section intro">
+    <div class="container">
+      <a class="back-link" href="/servicios">← Volver a servicios</a>
+      <span class="eyebrow">Servicios</span>
+      <h1>{service.title}</h1>
+      {service.description.map((paragraph) => <p>{paragraph}</p>)}
+      <a class="btn btn-primary" href="/contacto">
+        Solicitar presupuesto para {service.title.toLowerCase()}
+      </a>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Qué incluye este servicio</h2>
+      <ul class="includes">
+        {
+          service.includes.map((item) => (
+            <li>
+              <Icon name="check" class="check" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Cómo trabajamos</h2>
+      <ol class="process">
+        {
+          service.process.map((step, index) => (
+            <li>
+              <span class="step-number">{index + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Beneficios</h2>
+      <ul class="benefits">
+        {
+          service.benefits.map((benefit) => (
+            <li>
+              <Icon name="check" class="check" />
+              <span>{benefit}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section price-section">
+    <div class="container price-card">
+      <h2>Precio orientativo</h2>
+      <p>{service.priceRange}</p>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container cta-inner">
+      <div>
+        <h2>¿Hablamos de tu proyecto?</h2>
+        <p>Pide tu presupuesto gratuito y sin compromiso hoy mismo.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="/contacto">Pide tu presupuesto gratuito</a>
+        <a class="btn btn-secondary" href={site.phoneHref}>
+          <Icon name="phone" />
+          <span>{site.phone}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section back-section">
+    <div class="container">
+      <a class="back-link" href="/servicios">← Ver todos los servicios</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .back-link {
+    display: block;
+    margin-bottom: 1.5rem;
+    color: var(--color-navy);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .intro p {
+    max-width: 65ch;
+  }
+
+  .intro .btn {
+    margin-top: 0.5rem;
+  }
+
+  .includes,
+  .benefits {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-width: 700px;
+  }
+
+  .includes li,
+  .benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .includes :global(.check),
+  .benefits :global(.check) {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+    background: var(--color-solar-yellow);
+    border-radius: 50%;
+    padding: 4px;
+    margin-top: 0.1rem;
+  }
+
+  .process {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 700px;
+  }
+
+  .process li {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-white);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .process h3 {
+    color: var(--color-navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .process p {
+    margin: 0;
+  }
+
+  .price-card {
+    background: var(--color-navy);
+    color: var(--color-white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 760px;
+  }
+
+  .price-card h2 {
+    color: var(--color-white);
+  }
+
+  .price-card p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--color-offwhite);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+
+  .cta-inner h2 {
+    color: var(--color-navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .cta-inner p {
+    margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .back-section {
+    padding-top: 0;
+  }
+</style>

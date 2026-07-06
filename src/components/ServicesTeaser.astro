@@ -9,10 +9,10 @@ import { services } from "../data/services";
     <div class="grid">
       {
         services.map((service) => (
-          <article class="card">
+          <a class="card" href={`/servicios/${service.slug}`}>
             <h3>{service.title}</h3>
             <p>{service.summary}</p>
-          </article>
+          </a>
         ))
       }
     </div>
@@ -29,10 +29,18 @@ import { services } from "../data/services";
   }
 
   .card {
+    display: block;
     background: var(--color-white);
     border: 1px solid #e6e9f0;
     border-radius: 12px;
     padding: 1.75rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .card:hover {
+    border-color: var(--color-solar-yellow);
+    transform: translateY(-2px);
   }
 
   .card h3 {
