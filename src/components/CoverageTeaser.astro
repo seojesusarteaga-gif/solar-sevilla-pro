@@ -13,7 +13,13 @@ import { provinceMunicipalities } from "../data/coverage";
       </p>
       <ul class="municipalities">
         <li class="capital">Sevilla capital</li>
-        {provinceMunicipalities.map((town) => <li>{town.name}</li>)}
+        {
+          provinceMunicipalities.map((town) => (
+            <li>
+              <a href={`/zona/${town.slug}`}>{town.name}</a>
+            </li>
+          ))
+        }
       </ul>
       <a class="btn btn-primary" href="/zona-cobertura">Consulta tu municipio</a>
     </div>
@@ -56,15 +62,30 @@ import { provinceMunicipalities } from "../data/coverage";
     background: var(--color-offwhite);
     border: 1px solid #e6e9f0;
     border-radius: 999px;
-    padding: 0.4rem 0.9rem;
     font-size: 0.9rem;
     color: var(--color-navy);
   }
 
-  .municipalities .capital {
+  .municipalities li:not(.capital) {
+    padding: 0;
+  }
+
+  .municipalities li.capital {
+    padding: 0.4rem 0.9rem;
     background: var(--color-navy);
     color: var(--color-white);
     font-weight: 700;
+  }
+
+  .municipalities li a {
+    display: block;
+    padding: 0.4rem 0.9rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .municipalities li a:hover {
+    text-decoration: underline;
   }
 
   .map svg {

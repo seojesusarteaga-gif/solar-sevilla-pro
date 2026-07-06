@@ -55,10 +55,11 @@ const localBusinessSchema = {
       <div class="towns-grid">
         {
           provinceMunicipalities.map((town) => (
-            <article class="town-card">
+            <a class="town-card" href={`/zona/${town.slug}`}>
               <h3>{town.name}</h3>
               <p>{town.blurb}</p>
-            </article>
+              <span class="link">Ver placas solares en {town.name} →</span>
+            </a>
           ))
         }
       </div>
@@ -120,10 +121,18 @@ const localBusinessSchema = {
   }
 
   .town-card {
+    display: block;
     background: var(--color-white);
     border: 1px solid #e6e9f0;
     border-radius: 12px;
     padding: 1.5rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .town-card:hover {
+    border-color: var(--color-solar-yellow);
+    transform: translateY(-2px);
   }
 
   .town-card h3 {
@@ -132,8 +141,14 @@ const localBusinessSchema = {
   }
 
   .town-card p {
-    margin: 0;
+    margin: 0 0 0.75rem;
     font-size: 0.95rem;
+  }
+
+  .town-card .link {
+    color: var(--color-navy);
+    font-weight: 700;
+    font-size: 0.9rem;
   }
 
   .cta-inner {

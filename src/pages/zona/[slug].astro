@@ -1,0 +1,165 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/Icon.astro";
+import { site } from "../../data/site";
+import { provinceMunicipalities } from "../../data/coverage";
+
+export function getStaticPaths() {
+  return provinceMunicipalities.map((town) => ({
+    params: { slug: town.slug },
+    props: { town },
+  }));
+}
+
+const { town } = Astro.props;
+
+const localBusinessSchema = {
+  "@type": "LocalBusiness",
+  name: site.name,
+  telephone: site.phoneHref.replace("tel:", ""),
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressCountry: "ES",
+  },
+  areaServed: {
+    "@type": "City",
+    name: town.name,
+  },
+};
+---
+
+<Layout
+  title={`Placas Solares en ${town.name} | Solar Sevilla Pro`}
+  description={`Instalación de placas solares en ${town.name}. Presupuesto gratuito en 24h, instaladores certificados y financiación disponible. Llama al 954 123 456.`}
+  extraSchema={[localBusinessSchema]}
+>
+  <section class="section intro">
+    <div class="container">
+      <a class="back-link" href="/zona-cobertura">← Volver a zona de cobertura</a>
+      <span class="eyebrow">Zona de cobertura</span>
+      <h1>Placas solares en {town.name}</h1>
+      <p>{town.intro}</p>
+      <a class="btn btn-primary" href="/contacto">Solicitar presupuesto en {town.name}</a>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Por qué instalar placas solares en {town.name}</h2>
+      <ul class="highlights">
+        {
+          town.highlights.map((highlight) => (
+            <li>
+              <Icon name="check" class="check" />
+              <span>{highlight}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container cta-inner">
+      <div>
+        <h2>¿Instalamos placas solares en tu vivienda o negocio en {town.name}?</h2>
+        <p>Pide tu presupuesto gratuito y sin compromiso hoy mismo.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="/contacto">Pide tu presupuesto gratuito</a>
+        <a class="btn btn-secondary" href={site.phoneHref}>
+          <Icon name="phone" />
+          <span>{site.phone}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section back-section">
+    <div class="container">
+      <a class="back-link" href="/zona-cobertura">← Ver todos los municipios de la zona de cobertura</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .back-link {
+    display: block;
+    margin-bottom: 1.5rem;
+    color: var(--color-navy);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .intro p {
+    max-width: 65ch;
+  }
+
+  .highlights {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 700px;
+  }
+
+  .highlights li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .highlights :global(.check) {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+    background: var(--color-solar-yellow);
+    border-radius: 50%;
+    padding: 5px;
+    margin-top: 0.1rem;
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--color-navy);
+    color: var(--color-white);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+
+  .cta-inner h2 {
+    color: var(--color-white);
+    margin-bottom: 0.3rem;
+    max-width: 40ch;
+  }
+
+  .cta-inner p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .back-section {
+    padding-top: 0;
+  }
+</style>
