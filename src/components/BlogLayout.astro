@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  datePublished: string;
+}
+
+const { title, description, h1, datePublished } = Astro.props;
+const siteUrl = Astro.site!;
+
+const dateDisplay = new Intl.DateTimeFormat("es-ES", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+}).format(new Date(`${datePublished}T00:00:00`));
+
+const articleSchema = {
+  "@type": "BlogPosting",
+  headline: h1,
+  description,
+  datePublished,
+  author: {
+    "@type": "Organization",
+    name: site.name,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: site.name,
+    url: siteUrl.toString(),
+  },
+};
+---
+
+<Layout title={title} description={description} extraSchema={[articleSchema]}>
+  <article class="section post">
+    <div class="container post-inner">
+      <a class="back-link" href="/blog">← Volver al blog</a>
+      <span class="eyebrow">Blog</span>
+      <h1>{h1}</h1>
+      <p class="date">Publicado el {dateDisplay}</p>
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .post-inner {
+    max-width: 760px;
+  }
+
+  .back-link {
+    display: block;
+    margin-bottom: 1.5rem;
+    color: var(--color-navy);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .date {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .prose :global(h2) {
+    color: var(--color-navy);
+    margin-top: 2.5rem;
+  }
+
+  .prose :global(p) {
+    line-height: 1.7;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(a) {
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+
+  .prose :global(.cta-box) {
+    background: var(--color-offwhite);
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin: 2.5rem 0;
+  }
+
+  .prose :global(.cta-box p) {
+    margin-bottom: 1rem;
+  }
+</style>

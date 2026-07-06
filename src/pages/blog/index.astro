@@ -1,0 +1,85 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { posts } from "../../data/blog";
+---
+
+<Layout
+  title="Blog | Guías sobre Placas Solares en Sevilla - Solar Sevilla Pro"
+  description="Guías sobre ayudas, amortización, mantenimiento y financiación de placas solares en Sevilla, escritas por Solar Sevilla Pro."
+>
+  <section class="section intro">
+    <div class="container">
+      <span class="eyebrow">Blog</span>
+      <h1>Guías sobre placas solares en Sevilla</h1>
+      <p>
+        Todo lo que necesitas saber antes de instalar placas solares: ayudas,
+        plazos de amortización, mantenimiento y financiación.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container grid">
+      {
+        posts.map((post) => (
+          <a class="card" href={`/blog/${post.slug}`}>
+            <p class="post-date">{post.date}</p>
+            <h2>{post.title}</h2>
+            <p>{post.excerpt}</p>
+            <span class="link">Leer artículo →</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro p {
+    max-width: 60ch;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .card {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid #e6e9f0;
+    border-radius: 12px;
+    padding: 1.75rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .card:hover {
+    border-color: var(--color-solar-yellow);
+    transform: translateY(-2px);
+  }
+
+  .post-date {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .card h2 {
+    color: var(--color-navy);
+    font-size: 1.2rem;
+  }
+
+  .card .link {
+    color: var(--color-navy);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
