@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/Icon.astro";
+import BatteryBackup from "../../components/BatteryBackup.astro";
 import { site } from "../../data/site";
 import { services } from "../../data/services";
 
@@ -43,6 +44,38 @@ const serviceSchema = {
       </a>
     </div>
   </section>
+
+  {
+    service.kits.length > 0 && (
+      <section class="section kits-section">
+        <div class="container">
+          <h2>Kits con precio cerrado</h2>
+          <div class="kits-grid">
+            {service.kits.map((kit) => (
+              <article class="kit-card">
+                <h3>{kit.name}</h3>
+                <p class="kit-power">{kit.powerRange}</p>
+                <p class="kit-panels">{kit.panelsRange}</p>
+                <p class="kit-price">{kit.price}</p>
+                <ul>
+                  {kit.includes.map((item) => (
+                    <li>
+                      <Icon name="check" class="check" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p class="kit-ideal">{kit.idealFor}</p>
+                <a class="btn btn-primary" href="/contacto">
+                  Solicitar {kit.name}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <section class="section section-alt">
     <div class="container">
@@ -102,6 +135,8 @@ const serviceSchema = {
     </div>
   </section>
 
+  {service.slug === "instalacion-residencial" && <BatteryBackup />}
+
   <section class="section cta-section">
     <div class="container cta-inner">
       <div>
@@ -144,6 +179,87 @@ const serviceSchema = {
 
   .intro .btn {
     margin-top: 0.5rem;
+  }
+
+  .kits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .kit-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border: 2px solid var(--color-navy);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .kit-card h3 {
+    color: var(--color-navy);
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .kit-power,
+  .kit-panels {
+    margin: 0 0 0.3rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .kit-price {
+    margin: 0.75rem 0 1.25rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-navy);
+  }
+
+  .kit-card ul {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .kit-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .kit-card li :global(.check) {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+    background: var(--color-solar-yellow);
+    border-radius: 50%;
+    padding: 4px;
+    margin-top: 0.1rem;
+  }
+
+  .kit-ideal {
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+  }
+
+  .kit-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  @media (max-width: 760px) {
+    .kits-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .includes,

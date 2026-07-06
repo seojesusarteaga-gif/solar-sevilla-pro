@@ -1,0 +1,57 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<section class="section battery-section">
+  <div class="container battery-grid">
+    <Icon name="battery" class="battery-icon" />
+    <div>
+      <span class="eyebrow">Batería y resiliencia</span>
+      <h2>¿Y si vuelve a haber un apagón?</h2>
+      <p>
+        El apagón general del 28 de abril de 2025 dejó sin luz a gran parte de
+        España y Portugal durante horas. Fue un buen recordatorio de lo
+        dependientes que somos de la red eléctrica.
+      </p>
+      <p>
+        Una instalación solar conectada a red, sin batería, se desconecta
+        automáticamente durante un corte de suministro: es la normativa de
+        seguridad vigente para evitar riesgos en la red eléctrica. Si quieres
+        que tu vivienda siga funcionando durante un apagón, la solución es
+        añadir una <strong>batería con salida de emergencia (backup)</strong>,
+        que mantiene encendidos los circuitos esenciales aunque la red esté
+        caída.
+      </p>
+      <a class="btn btn-primary" href="/contacto">Consultar opciones de batería</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .battery-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .battery-grid :global(.battery-icon) {
+    width: 56px;
+    height: 56px;
+    color: var(--color-navy);
+    background: var(--color-solar-yellow);
+    border-radius: 50%;
+    padding: 14px;
+    flex-shrink: 0;
+  }
+
+  .battery-grid p {
+    max-width: 65ch;
+  }
+
+  @media (max-width: 640px) {
+    .battery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -4,7 +4,7 @@ export const services = [
     title: "Instalación residencial",
     metaTitle: "Instalación Residencial de Placas Solares en Sevilla | Solar Sevilla Pro",
     metaDescription:
-      "Instalación residencial de placas solares en Sevilla para viviendas unifamiliares y comunidades de vecinos. Presupuesto gratuito en 24h y precio orientativo desde 4.000 €.",
+      "Instalación residencial de placas solares en Sevilla para viviendas unifamiliares y comunidades de vecinos. Kits con precio cerrado desde 4.200 € y presupuesto gratuito en 24h.",
     summary:
       "Placas solares para viviendas unifamiliares, chalets y comunidades de vecinos, dimensionadas según tu consumo real.",
     description: [
@@ -53,6 +53,38 @@ export const services = [
     ],
     priceRange:
       "Las instalaciones residenciales suelen oscilar entre 4.000 € y 9.000 €, según la potencia instalada (normalmente entre 3 kW y 6 kW) y si se añade batería de acumulación. Es un precio orientativo: con tu presupuesto personalizado te damos un importe cerrado antes de que decidas nada.",
+    kits: [
+      {
+        name: "Kit Solar Básico",
+        powerRange: "3 - 4,5 kWp",
+        panelsRange: "6 - 10 paneles",
+        price: "Desde 4.200 € (IVA incluido)",
+        includes: [
+          "Paneles solares e inversor homologados",
+          "Estructura de sujeción para tu tipo de tejado",
+          "Instalación eléctrica y cableado completo",
+          "Legalización y alta de autoconsumo",
+          "IVA incluido",
+        ],
+        idealFor:
+          "Viviendas con consumo bajo-medio (facturas de referencia de 60-120 €/mes).",
+      },
+      {
+        name: "Kit Solar Completo",
+        powerRange: "5 - 6,5 kWp + batería",
+        panelsRange: "11 - 15 paneles + batería de acumulación con backup",
+        price: "Desde 8.900 € (IVA incluido)",
+        includes: [
+          "Todo lo incluido en el Kit Solar Básico",
+          "Batería de acumulación con salida de emergencia (backup)",
+          "Monitorización de la producción",
+          "Legalización y alta de autoconsumo",
+          "IVA incluido",
+        ],
+        idealFor:
+          "Viviendas con consumo medio-alto y para quienes quieren mantener el suministro ante un corte de red.",
+      },
+    ],
   },
   {
     slug: "instalacion-comercial",
@@ -108,6 +140,7 @@ export const services = [
     ],
     priceRange:
       "Los proyectos comerciales e industriales parten de los 8.000 € y pueden superar los 30.000 € en instalaciones de mayor potencia, en función del consumo del negocio y del espacio de cubierta disponible. El presupuesto final se calcula tras el estudio de tu curva de consumo.",
+    kits: [],
   },
   {
     slug: "mantenimiento",
@@ -158,5 +191,6 @@ export const services = [
     ],
     priceRange:
       "La revisión anual estándar suele situarse entre 90 € y 180 €, dependiendo del tamaño de la instalación y de si incluye limpieza completa de los módulos. Te confirmamos el precio exacto al conocer los datos de tu instalación.",
+    kits: [],
   },
 ] as const;

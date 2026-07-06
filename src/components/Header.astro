@@ -30,6 +30,16 @@ const currentPath = Astro.url.pathname;
       </ul>
     </nav>
 
+    <a
+      class="whatsapp"
+      href={site.whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Escríbenos por WhatsApp"
+    >
+      <Icon name="chat" class="whatsapp-icon" />
+    </a>
+
     <a class="phone" href={site.phoneHref}>
       <Icon name="phone" class="phone-icon" />
       <span>{site.phone}</span>
@@ -119,6 +129,28 @@ const currentPath = Astro.url.pathname;
     color: var(--color-solar-yellow);
   }
 
+  .whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    color: var(--color-white);
+  }
+
+  .whatsapp:hover {
+    border-color: var(--color-solar-yellow);
+    color: var(--color-solar-yellow);
+  }
+
+  .whatsapp :global(.whatsapp-icon) {
+    width: 19px;
+    height: 19px;
+  }
+
   .phone {
     display: flex;
     align-items: center;
@@ -190,22 +222,36 @@ const currentPath = Astro.url.pathname;
 
   @media (max-width: 480px) {
     .bar {
-      gap: 0.6rem;
-      padding: 0.65rem 1rem;
+      gap: 0.4rem;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .logo {
+      gap: 0.3rem;
     }
 
     .logo span {
-      font-size: 0.95rem;
-    }
-
-    .phone {
-      padding: 0.4rem 0.6rem;
       font-size: 0.85rem;
     }
 
+    .phone {
+      padding: 0.35rem 0.5rem;
+      font-size: 0.8rem;
+    }
+
     .phone :global(.phone-icon) {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
+    }
+
+    .whatsapp {
+      width: 30px;
+      height: 30px;
+    }
+
+    .whatsapp :global(.whatsapp-icon) {
+      width: 15px;
+      height: 15px;
     }
   }
 </style>
