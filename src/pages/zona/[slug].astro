@@ -1,8 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/Icon.astro";
+import Faq from "../../components/Faq.astro";
 import { site } from "../../data/site";
-import { provinceMunicipalities } from "../../data/coverage";
+import { provinceMunicipalities, municipalityImage } from "../../data/coverage";
 
 export function getStaticPaths() {
   return provinceMunicipalities.map((town) => ({
@@ -30,20 +31,44 @@ const localBusinessSchema = {
     name: town.name,
   },
 };
+
+const faqSchema = {
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: town.faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: town.faq.answer,
+      },
+    },
+  ],
+};
 ---
 
 <Layout
   title={`Placas Solares en ${town.name} | Solar Sevilla Pro`}
   description={`Instalación de placas solares en ${town.name}. Presupuesto gratuito en 24h, instaladores certificados y financiación disponible. Llama al 954 123 456.`}
-  extraSchema={[localBusinessSchema]}
+  extraSchema={[localBusinessSchema, faqSchema]}
 >
   <section class="section intro">
-    <div class="container">
-      <a class="back-link" href="/zona-cobertura">← Volver a zona de cobertura</a>
-      <span class="eyebrow">Zona de cobertura</span>
-      <h1>Placas solares en {town.name}</h1>
-      <p>{town.intro}</p>
-      <a class="btn btn-primary" href="/contacto">Solicitar presupuesto en {town.name}</a>
+    <div class="container intro-grid">
+      <div>
+        <a class="back-link" href="/zona-cobertura">← Volver a zona de cobertura</a>
+        <span class="eyebrow">Zona de cobertura</span>
+        <h1>Placas solares en {town.name}</h1>
+        <p>{town.intro}</p>
+        <a class="btn btn-primary" href="/contacto">Solicitar presupuesto en {town.name}</a>
+      </div>
+      <img
+        class="intro-image"
+        src={`${municipalityImage.src}?w=900&q=75&auto=format&fit=crop`}
+        alt={`Placas solares instaladas en un tejado en ${town.name}`}
+        width="900"
+        height="600"
+        loading="lazy"
+      />
     </div>
   </section>
 
@@ -63,6 +88,21 @@ const localBusinessSchema = {
     </div>
   </section>
 
+  <section class="section">
+    <div class="container context-grid">
+      <div class="context-card">
+        <h2>Clima y producción solar en {town.name}</h2>
+        <p>{town.energyContext}</p>
+      </div>
+      <div class="context-card">
+        <h2>Ayudas y bonificaciones locales</h2>
+        <p>{town.subsidyNote}</p>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={[town.faq]} title={`Preguntas frecuentes sobre placas solares en ${town.name}`} />
+
   <section class="section cta-section">
     <div class="container cta-inner">
       <div>
@@ -71,9 +111,9 @@ const localBusinessSchema = {
       </div>
       <div class="actions">
         <a class="btn btn-primary" href="/contacto">Pide tu presupuesto gratuito</a>
-        <a class="btn btn-secondary" href={site.phoneHref}>
-          <Icon name="phone" />
-          <span>{site.phone}</span>
+        <a class="btn btn-secondary" href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
+          <Icon name="chat" />
+          <span>WhatsApp: {site.phone}</span>
         </a>
       </div>
     </div>
@@ -99,8 +139,43 @@ const localBusinessSchema = {
     text-decoration: underline;
   }
 
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
   .intro p {
     max-width: 65ch;
+  }
+
+  .intro-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .context-card {
+    background: var(--color-offwhite);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+
+  .context-card h2 {
+    color: var(--color-navy);
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .context-card p {
+    margin: 0;
   }
 
   .highlights {
@@ -161,5 +236,12 @@ const localBusinessSchema = {
 
   .back-section {
     padding-top: 0;
+  }
+
+  @media (max-width: 760px) {
+    .intro-grid,
+    .context-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

@@ -90,6 +90,25 @@ export const services = [
           "Viviendas con consumo medio-alto y para quienes quieren mantener el suministro ante un corte de red.",
       },
     ],
+    faq: [
+      {
+        question: "¿Necesito permiso de mi comunidad de vecinos para instalar placas solares?",
+        answer:
+          "Si vives en una vivienda unifamiliar no necesitas permiso de terceros. Si tu tejado es comunitario, la Ley de Propiedad Horizontal permite la instalación con una notificación previa a la comunidad, sin necesidad de votación, salvo que se ocupen elementos comunes de forma que perjudique a otros vecinos.",
+      },
+      {
+        question: "¿Qué pasa si mi tejado tiene sombras parte del día?",
+        answer:
+          "Se puede compensar con optimizadores de potencia por panel, que reducen el impacto de la sombra sobre el resto de la instalación. Lo valoramos en la visita técnica antes de proponerte una solución.",
+      },
+      {
+        question: "¿Puedo ampliar la instalación más adelante?",
+        answer:
+          "Sí, si el inversor tiene capacidad para más paneles de los instalados inicialmente. Si prevés ampliar la instalación en el futuro, coméntanoslo antes de firmar para dimensionar el inversor en consecuencia desde el principio.",
+      },
+    ],
+    example:
+      "Vivienda unifamiliar en Sevilla capital con una factura media de 140 €/mes. Instalamos un Kit Solar Completo de 6 kWp con batería; con una orientación sur sin apenas sombras, la instalación cubre alrededor del 70% del consumo diario y ha reducido la factura a una media de 45 €/mes.",
   },
   {
     slug: "instalacion-comercial",
@@ -151,6 +170,25 @@ export const services = [
     priceRange:
       "Los proyectos comerciales e industriales parten de los 8.000 € y pueden superar los 30.000 € en instalaciones de mayor potencia, en función del consumo del negocio y del espacio de cubierta disponible. El presupuesto final se calcula tras el estudio de tu curva de consumo.",
     kits: [],
+    faq: [
+      {
+        question: "¿Puedo instalar placas solares si mi nave es alquilada?",
+        answer:
+          "Sí, con autorización previa del propietario del inmueble. Es habitual en naves industriales alquiladas, y lo dejamos recogido en un documento firmado por ambas partes antes de empezar la instalación.",
+      },
+      {
+        question: "¿Qué pasa si mi negocio consume más energía por la noche que de día?",
+        answer:
+          "En ese caso el autoconsumo instantáneo es menor, pero puede compensarse con batería o con excedentes vertidos a la red con compensación. Lo valoramos en el estudio de viabilidad antes de dimensionar la instalación.",
+      },
+      {
+        question: "¿Necesito parar la actividad del negocio durante la instalación?",
+        answer:
+          "En la mayoría de los casos no. Coordinamos los trabajos de cubierta con tu actividad diaria y solo es necesario un corte breve de suministro para la conexión final del inversor.",
+      },
+    ],
+    example:
+      "Nave industrial de 800 m² en un polígono de Dos Hermanas, con consumo concentrado en horario de 8:00 a 18:00. Instalamos una planta de 40 kWp sin batería, ya que casi todo el consumo se produce en horas de sol; la estimación de amortización se sitúa en torno a 5 años.",
   },
   {
     slug: "mantenimiento",
@@ -203,9 +241,33 @@ export const services = [
         description:
           "Te entregamos un informe por escrito con el resultado de la revisión y, si detectamos alguna incidencia, te la explicamos antes de actuar.",
       },
+      {
+        title: "Seguimiento y próxima revisión",
+        description:
+          "Te recomendamos la fecha de la siguiente revisión y quedamos disponibles si detectas cualquier cambio en el rendimiento antes de esa fecha.",
+      },
     ],
     priceRange:
       "La revisión anual estándar suele situarse entre 90 € y 180 €, dependiendo del tamaño de la instalación y de si incluye limpieza completa de los módulos. Te confirmamos el precio exacto al conocer los datos de tu instalación.",
     kits: [],
+    faq: [
+      {
+        question: "¿Puedo hacer yo mismo la limpieza de los paneles?",
+        answer:
+          "Puedes hacer una limpieza básica con agua y una esponja suave si tu tejado es accesible con seguridad, pero la revisión eléctrica del inversor y las conexiones requiere personal técnico cualificado.",
+      },
+      {
+        question: "¿Qué pasa si mi instalación la hizo otra empresa?",
+        answer:
+          "No hay problema, trabajamos con instalaciones propias y ajenas. Solo necesitamos conocer la marca de los paneles y el inversor para preparar la revisión correctamente.",
+      },
+      {
+        question: "¿Cada cuánto hay que cambiar el inversor?",
+        answer:
+          "El inversor suele tener una vida útil de 10-15 años, inferior a la de los paneles (25 años o más). En la revisión anual valoramos su estado para anticipar cuándo convendría sustituirlo.",
+      },
+    ],
+    example:
+      "Instalación residencial de 5 kWp en Alcalá de Guadaíra con 4 años sin revisión. En la inspección detectamos una caída del 12% en la producción respecto a lo esperado, causada por suciedad acumulada y una conexión floja en el inversor. Tras la limpieza y el ajuste, la producción volvió a los valores normales.",
   },
 ] as const;

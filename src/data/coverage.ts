@@ -4,6 +4,11 @@ export const capital = {
     "Instalaciones en azoteas y tejados de viviendas unifamiliares, áticos y comunidades de vecinos, adaptadas a las limitaciones estéticas del casco histórico y los barrios periféricos.",
 };
 
+export const municipalityImage = {
+  src: "https://images.unsplash.com/photo-1745187946672-2c1d8cf26a2b",
+  credit: "Rafael Moreno / Unsplash",
+};
+
 export const provinceMunicipalities = [
   {
     slug: "dos-hermanas",
@@ -17,6 +22,15 @@ export const provinceMunicipalities = [
       "Barrios residenciales con viviendas unifamiliares y adosados de buena orientación.",
       "Cercanía a Sevilla capital, con plazos de visita e instalación ajustados.",
     ],
+    energyContext:
+      "Como el resto del área metropolitana de Sevilla, Dos Hermanas registra una irradiación solar muy alta durante todo el año, con inviernos suaves que apenas reducen la producción fotovoltaica respecto al verano.",
+    subsidyNote:
+      "El Ayuntamiento de Dos Hermanas aplica una bonificación del 50% en la cuota íntegra del IBI (con un límite de 200 €) durante 5 años para viviendas con autoconsumo fotovoltaico que cubra al menos el 50% de la demanda eléctrica, según su ordenanza fiscal municipal.",
+    faq: {
+      question: "¿Puedo instalar placas solares en una vivienda adosada en Dos Hermanas?",
+      answer:
+        "Sí. Muchas viviendas adosadas de Dos Hermanas tienen tejados a dos aguas con buena orientación; en la visita técnica valoramos la superficie disponible y las posibles sombras de las viviendas colindantes.",
+    },
   },
   {
     slug: "alcala-de-guadaira",
@@ -30,6 +44,15 @@ export const provinceMunicipalities = [
       "Crecimiento urbanístico sostenido, con construcciones recientes aptas para autoconsumo.",
       "Distancia corta a Sevilla capital, con desplazamientos ágiles para la instalación.",
     ],
+    energyContext:
+      "Al estar algo más alejada del Guadalquivir que la capital, Alcalá de Guadaíra tiene un clima ligeramente más seco, con veranos largos y calurosos que se traducen en una producción solar sostenida de marzo a octubre.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de Alcalá de Guadaíra aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿Puedo instalar placas solares si mi vivienda en Alcalá de Guadaíra es de reciente construcción?",
+      answer:
+        "Sí, de hecho las viviendas de las urbanizaciones más nuevas suelen tener tejados sin sombras y una orientación muy adecuada para el autoconsumo, lo que facilita el diseño de la instalación.",
+    },
   },
   {
     slug: "utrera",
@@ -43,6 +66,15 @@ export const provinceMunicipalities = [
       "Naves y cortijos con grandes superficies de cubierta aprovechables.",
       "Posibilidad de dimensionar instalaciones de mayor potencia para uso agrícola.",
     ],
+    energyContext:
+      "El clima de Utrera, con veranos muy calurosos y secos propios de la campiña sevillana, favorece especialmente a las instalaciones agrícolas, donde el consumo eléctrico para riego coincide con los meses de mayor producción solar.",
+    subsidyNote:
+      "Según recopilaciones de bonificaciones municipales de la provincia, Utrera aplicaría una bonificación del 15% en el IBI durante 2 años; te recomendamos confirmar el porcentaje vigente con el ayuntamiento antes de solicitarla.",
+    faq: {
+      question: "¿Puedo instalar placas solares en una explotación agrícola o ganadera en Utrera?",
+      answer:
+        "Sí, es una de las instalaciones más habituales que hacemos en la zona: dimensionamos la instalación según el consumo de riego, naves o maquinaria agrícola de tu explotación.",
+    },
   },
   {
     slug: "ecija",
@@ -56,6 +88,15 @@ export const provinceMunicipalities = [
       "Casco histórico protegido y barrios de expansión sin restricciones para la instalación.",
       "Entorno agrícola en los alrededores con explotaciones que pueden beneficiarse del autoconsumo industrial.",
     ],
+    energyContext:
+      "El calor extremo de Écija en verano reduce ligeramente la eficiencia de cada panel a altas temperaturas, pero el altísimo número de horas de sol de la zona compensa con creces esa pérdida, dando un rendimiento anual por encima de la media provincial.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de Écija aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿El calor extremo de Écija en verano reduce el rendimiento de las placas solares?",
+      answer:
+        "Un calor muy elevado reduce ligeramente la eficiencia de cada panel, pero el altísimo número de horas de sol de Écija compensa con creces esa pérdida, dando un rendimiento anual por encima de la media.",
+    },
   },
   {
     slug: "mairena-del-aljarafe",
@@ -69,6 +110,15 @@ export const provinceMunicipalities = [
       "Zona residencial en expansión con nuevas construcciones cada año.",
       "Buena conexión con Sevilla capital para visitas técnicas y mantenimiento.",
     ],
+    energyContext:
+      "Situada en una zona elevada del Aljarafe, Mairena del Aljarafe apenas sufre nieblas invernales, lo que mantiene una producción solar más constante en los meses fríos que en zonas más próximas al río.",
+    subsidyNote:
+      "Según recopilaciones de bonificaciones municipales de la provincia, Mairena del Aljarafe aplicaría una bonificación del 50% en el IBI durante 7 años; te recomendamos confirmar el porcentaje vigente con el ayuntamiento antes de solicitarla.",
+    faq: {
+      question: "¿Las viviendas de cubierta plana de Mairena del Aljarafe necesitan una estructura especial?",
+      answer:
+        "Sí, en cubiertas planas usamos una estructura con la inclinación adecuada para maximizar la producción, en lugar de fijar los paneles directamente sobre la superficie horizontal.",
+    },
   },
   {
     slug: "la-rinconada",
@@ -82,6 +132,15 @@ export const provinceMunicipalities = [
       "Barrios residenciales consolidados con buena orientación de tejados.",
       "Cercanía a Sevilla capital que agiliza los plazos de instalación.",
     ],
+    energyContext:
+      "Por su cercanía al Guadalquivir, La Rinconada puede registrar algo más de humedad y niebla matinal en invierno que otras zonas de la provincia, aunque esto apenas afecta a la producción solar en el conjunto del año.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de La Rinconada aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿Puedo instalar placas solares en una nave del polígono industrial de La Rinconada?",
+      answer:
+        "Sí, es uno de los proyectos más habituales en la zona: dimensionamos la instalación según el consumo de la nave y gestionamos la legalización para instalaciones de mayor potencia.",
+    },
   },
   {
     slug: "los-palacios-y-villafranca",
@@ -95,6 +154,15 @@ export const provinceMunicipalities = [
       "Naves de almacenamiento y secado con grandes cubiertas disponibles.",
       "Retorno de la inversión más rápido en instalaciones de uso agrícola intensivo.",
     ],
+    energyContext:
+      "El entorno de marisma de Los Palacios y Villafranca combina una alta irradiación solar con un consumo eléctrico agrícola elevado en verano, justo cuando más energía producen las instalaciones fotovoltaicas.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de Los Palacios y Villafranca aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿Puedo usar placas solares para el riego de mis cultivos en Los Palacios y Villafranca?",
+      answer:
+        "Sí, el autoconsumo industrial es especialmente rentable para cubrir el consumo de los bombeos de riego, que suele concentrarse en las horas de mayor producción solar.",
+    },
   },
   {
     slug: "coria-del-rio",
@@ -108,6 +176,15 @@ export const provinceMunicipalities = [
       "Comercios locales que pueden reducir costes con autoconsumo de pequeña y mediana potencia.",
       "Ubicación junto al Guadalquivir con buena orientación solar en la mayoría de las parcelas.",
     ],
+    energyContext:
+      "Junto al Guadalquivir, Coria del Río tiene un microclima algo más húmedo que el interior de la provincia, pero mantiene igualmente un número de horas de sol muy por encima de la media española.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de Coria del Río aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿La humedad del Guadalquivir afecta a las placas solares en Coria del Río?",
+      answer:
+        "No de forma relevante: los paneles están preparados para condiciones de humedad ambiental normales, y el mantenimiento anual incluye la revisión de conexiones para prevenir cualquier efecto a largo plazo.",
+    },
   },
   {
     slug: "camas",
@@ -121,6 +198,15 @@ export const provinceMunicipalities = [
       "Distancia mínima a Sevilla capital, con desplazamientos casi inmediatos.",
       "Buena opción para instalaciones residenciales de tamaño medio.",
     ],
+    energyContext:
+      "Al estar pegada a Sevilla capital, Camas comparte prácticamente el mismo perfil climático y de horas de sol que la ciudad, uno de los más favorables de España para el autoconsumo fotovoltaico.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de Camas aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿Cuánto tarda el equipo en llegar a una vivienda en Camas?",
+      answer:
+        "Al estar Camas prácticamente pegada a Sevilla capital, los tiempos de visita técnica e instalación son de los más cortos de toda nuestra zona de cobertura.",
+    },
   },
   {
     slug: "tomares",
@@ -134,6 +220,15 @@ export const provinceMunicipalities = [
       "Alto interés por soluciones de mayor potencia con batería de acumulación.",
       "Urbanizaciones consolidadas con fácil acceso para la instalación.",
     ],
+    energyContext:
+      "Como el resto del Aljarafe, Tomares se beneficia de una ligera altura sobre el nivel del río que reduce la niebla invernal y mantiene una producción solar estable durante todo el año.",
+    subsidyNote:
+      "Según recopilaciones de bonificaciones municipales de la provincia, Tomares aplicaría una bonificación del 30% en el IBI durante 3 años; te recomendamos confirmar el porcentaje vigente con el ayuntamiento antes de solicitarla.",
+    faq: {
+      question: "¿Puedo añadir batería a una instalación de gran potencia en una vivienda de Tomares?",
+      answer:
+        "Sí, las viviendas unifamiliares de mayor superficie de Tomares son buenas candidatas para instalaciones de mayor potencia combinadas con batería de acumulación.",
+    },
   },
   {
     slug: "carmona",
@@ -147,6 +242,15 @@ export const provinceMunicipalities = [
       "Polígonos industriales junto a la A-4 sin restricciones estéticas para autoconsumo.",
       "Zonas de expansión residencial con buena orientación de tejados.",
     ],
+    energyContext:
+      "Carmona, en el límite con la campiña sevillana, registra veranos muy calurosos y una amplia base de horas de sol anuales, similar a la de Écija, lo que favorece el rendimiento de cualquier instalación fotovoltaica.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de Carmona aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿Puedo instalar placas solares si mi vivienda está en el casco histórico de Carmona?",
+      answer:
+        "Depende de la normativa de protección del casco histórico; en esos casos valoramos alternativas como cubiertas no visibles desde la vía pública. Fuera del casco histórico no existe esa limitación.",
+    },
   },
   {
     slug: "moron-de-la-frontera",
@@ -160,5 +264,14 @@ export const provinceMunicipalities = [
       "Presencia de industria auxiliar vinculada a la actividad de la zona.",
       "Planificación de visitas ajustada a la distancia desde Sevilla capital.",
     ],
+    energyContext:
+      "Morón de la Frontera, ya en el límite con la Sierra Sur, tiene un clima algo más continental que el resto de la provincia, con inviernos ligeramente más fríos pero veranos igualmente largos y soleados.",
+    subsidyNote:
+      "Como en gran parte de la provincia, es habitual que el Ayuntamiento de Morón de la Frontera aplique una bonificación en el IBI para instalaciones de autoconsumo; te confirmamos el porcentaje y la duración vigentes al preparar tu presupuesto.",
+    faq: {
+      question: "¿Trabajáis con explotaciones agrícolas y ganaderas de Morón de la Frontera?",
+      answer:
+        "Sí, es uno de los perfiles de cliente más habituales en la zona, y solemos dimensionar instalaciones de autoconsumo industrial para cubrir el consumo de las explotaciones.",
+    },
   },
 ] as const;

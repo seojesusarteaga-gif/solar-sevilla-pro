@@ -6,15 +6,16 @@ interface FaqItem {
 
 interface Props {
   items: readonly FaqItem[];
+  title?: string;
 }
 
-const { items } = Astro.props;
+const { items, title = "Dudas habituales sobre placas solares en Sevilla" } = Astro.props;
 ---
 
 <section class="section section-alt">
   <div class="container">
     <span class="eyebrow">Preguntas frecuentes</span>
-    <h2>Dudas habituales sobre placas solares en Sevilla</h2>
+    <h2>{title}</h2>
     <div class="faq-list">
       {
         items.map((item) => (

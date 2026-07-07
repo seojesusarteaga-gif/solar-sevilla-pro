@@ -8,14 +8,24 @@ import { services } from "../data/services";
   description="Instalación residencial, comercial e industrial de placas solares en Sevilla, además de mantenimiento y revisión de instalaciones existentes. Presupuesto gratuito."
 >
   <section class="section intro">
-    <div class="container">
-      <span class="eyebrow">Servicios</span>
-      <h1>Servicios de instalación de placas solares en Sevilla</h1>
-      <p>
-        Trabajamos tres líneas de servicio: instalación residencial, instalación
-        comercial e industrial, y mantenimiento de instalaciones ya existentes. Cada
-        proyecto empieza con un estudio de tu consumo real antes de proponerte nada.
-      </p>
+    <div class="container intro-grid">
+      <div>
+        <span class="eyebrow">Servicios</span>
+        <h1>Servicios de instalación de placas solares en Sevilla</h1>
+        <p>
+          Trabajamos tres líneas de servicio: instalación residencial, instalación
+          comercial e industrial, y mantenimiento de instalaciones ya existentes. Cada
+          proyecto empieza con un estudio de tu consumo real antes de proponerte nada.
+        </p>
+      </div>
+      <img
+        class="intro-image"
+        src="https://images.unsplash.com/photo-1660330589243-4c640d878052?w=900&q=75&auto=format&fit=crop"
+        alt="Equipo técnico instalando placas solares en un tejado"
+        width="900"
+        height="600"
+        loading="lazy"
+      />
     </div>
   </section>
 
@@ -35,8 +45,21 @@ import { services } from "../data/services";
 </Layout>
 
 <style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
   .intro p {
     max-width: 60ch;
+  }
+
+  .intro-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
   }
 
   .grid {
@@ -77,6 +100,10 @@ import { services } from "../data/services";
 
   @media (max-width: 860px) {
     .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-grid {
       grid-template-columns: 1fr;
     }
   }

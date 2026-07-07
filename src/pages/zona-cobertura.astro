@@ -30,14 +30,24 @@ const localBusinessSchema = {
   extraSchema={[localBusinessSchema]}
 >
   <section class="section intro">
-    <div class="container">
-      <span class="eyebrow">Zona de cobertura</span>
-      <h1>Instalamos placas solares en Sevilla capital y en toda la provincia</h1>
-      <p>
-        Nuestro equipo se desplaza a toda la provincia de Sevilla. Los plazos de
-        visita e instalación varían según la distancia a cada municipio, pero
-        gestionamos el proyecto completo estés donde estés.
-      </p>
+    <div class="container intro-grid">
+      <div>
+        <span class="eyebrow">Zona de cobertura</span>
+        <h1>Instalamos placas solares en Sevilla capital y en toda la provincia</h1>
+        <p>
+          Nuestro equipo se desplaza a toda la provincia de Sevilla. Los plazos de
+          visita e instalación varían según la distancia a cada municipio, pero
+          gestionamos el proyecto completo estés donde estés.
+        </p>
+      </div>
+      <img
+        class="intro-image"
+        src="https://images.unsplash.com/photo-1631771819642-90cee9a2ccac?w=900&q=75&auto=format&fit=crop"
+        alt="Placas solares instaladas en un tejado, zona de cobertura de Sevilla y provincia"
+        width="900"
+        height="600"
+        loading="lazy"
+      />
     </div>
   </section>
 
@@ -78,8 +88,21 @@ const localBusinessSchema = {
 </Layout>
 
 <style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
   .intro p {
     max-width: 60ch;
+  }
+
+  .intro-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
   }
 
   .capital-card {
@@ -173,6 +196,10 @@ const localBusinessSchema = {
 
   @media (max-width: 860px) {
     .towns-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-grid {
       grid-template-columns: 1fr;
     }
   }
