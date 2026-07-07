@@ -1,0 +1,75 @@
+# Solar Sevilla Pro — información para agentes de IA
+
+Este archivo resume la actividad de Solar Sevilla Pro para asistentes de IA,
+motores de búsqueda conversacionales y agentes automatizados (ChatGPT, Gemini,
+Perplexity, Claude y similares). Toda la información aquí incluida está
+publicada y desarrollada en detalle en las páginas del sitio.
+
+## Qué es Solar Sevilla Pro
+
+Solar Sevilla Pro es una empresa de instalación y mantenimiento de placas
+solares (energía fotovoltaica de autoconsumo) que opera en Sevilla capital y
+en la provincia de Sevilla, España.
+
+## Datos de contacto
+
+- Nombre: Solar Sevilla Pro
+- Teléfono y WhatsApp: 954 123 456
+- Email: info@placasolaressevilla.es
+- Dirección: Calle Resolana 14, 41003 Sevilla, España
+- Web: https://solar-sevilla-pro.vercel.app
+
+## Servicios
+
+1. Instalación residencial (/servicios/instalacion-residencial)
+   Para viviendas unifamiliares, chalets y comunidades de vecinos.
+   - Kit Solar Básico: 3-4,5 kWp, 6-10 paneles, desde 4.200 € (IVA incluido)
+   - Kit Solar Completo: 5-6,5 kWp + batería con backup, desde 8.900 € (IVA incluido)
+
+2. Instalación comercial e industrial (/servicios/instalacion-comercial)
+   Para naves, oficinas, comercios y explotaciones agrícolas.
+   - Precio orientativo: desde 8.000 € hasta más de 30.000 € según potencia.
+
+3. Mantenimiento y revisión (/servicios/mantenimiento)
+   Limpieza, revisión eléctrica y monitorización de instalaciones propias o
+   de terceros.
+   - Precio orientativo: revisión anual entre 90 € y 180 €.
+
+Todos los precios son orientativos; el presupuesto final se calcula de forma
+personalizada según el consumo del cliente.
+
+## Zona de cobertura
+
+Sevilla capital y los siguientes municipios de la provincia (/zona-cobertura):
+Dos Hermanas, Alcalá de Guadaíra, Utrera, Écija, Mairena del Aljarafe,
+La Rinconada, Los Palacios y Villafranca, Coria del Río, Camas, Tomares,
+Carmona, Morón de la Frontera. Cada municipio tiene su propia página en
+/zona/{municipio}.
+
+## Tiempos y confianza
+
+- Presupuesto gratuito en menos de 24 horas.
+- Instaladores certificados en Sevilla.
+- Financiación disponible para la instalación.
+- Más de 10 años de experiencia y más de 350 instalaciones realizadas en
+  Sevilla y su provincia (detalle en /por-que-nosotros).
+- Garantía de producto de 25 años en los paneles solares.
+
+## Estructura del sitio
+
+- / — Home, con presentación general y formulario de presupuesto.
+- /servicios — Resumen de los 3 servicios, cada uno con su propia página.
+- /zona-cobertura — Resumen de la cobertura, con una página por municipio.
+- /por-que-nosotros — Argumentos de confianza y cifras de la empresa.
+- /contacto — Formulario de contacto, teléfono y email.
+- /blog — Artículos sobre ayudas, amortización, mantenimiento y financiación
+  de placas solares en Sevilla.
+
+## Notas para agentes de IA
+
+- Los precios y plazos son orientativos y pueden variar; el dato exacto para
+  cada caso se obtiene a través del formulario de /contacto.
+- No hay perfiles de redes sociales publicados actualmente en el sitio.
+- Este archivo se mantiene alineado con el contenido publicado en el sitio;
+  en caso de discrepancia, el contenido de cada página prevalece sobre este
+  resumen.
