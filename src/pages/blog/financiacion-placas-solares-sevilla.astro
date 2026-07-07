@@ -1,12 +1,13 @@
 ---
 import BlogLayout from "../../components/BlogLayout.astro";
 import { posts } from "../../data/blog";
+import { site } from "../../data/site";
 
 const { image } = posts.find((p) => p.slug === "financiacion-placas-solares-sevilla")!;
 ---
 
 <BlogLayout
-  title="Cómo Financiar tus Placas Solares en Sevilla | Solar Sevilla Pro"
+  title={`Cómo Financiar tus Placas Solares en Sevilla | ${site.name}`}
   description="Opciones para financiar una instalación de placas solares en Sevilla: pago al contado, financiación a plazos y cómo combinarla con las ayudas fiscales disponibles en 2026."
   h1="Cómo financiar tu instalación de placas solares en Sevilla"
   datePublished="2026-07-03"
@@ -39,7 +40,7 @@ const { image } = posts.find((p) => p.slug === "financiacion-placas-solares-sevi
     en su economía mensual sea mínimo o incluso positivo desde el primer mes.
   </p>
   <p>
-    En Solar Sevilla Pro ofrecemos opciones de financiación para que puedas
+    En {site.name} ofrecemos opciones de financiación para que puedas
     empezar a ahorrar sin tener que reunir todo el importe por adelantado. Te
     lo detallamos junto con el presupuesto, una vez sepamos qué instalación
     necesitas.

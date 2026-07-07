@@ -1,10 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { services } from "../data/services";
+import { site } from "../data/site";
 ---
 
 <Layout
-  title="Servicios de Placas Solares en Sevilla | Solar Sevilla Pro"
+  title={`Servicios de Placas Solares en Sevilla | ${site.name}`}
   description="Instalación residencial, comercial e industrial de placas solares en Sevilla, además de mantenimiento y revisión de instalaciones existentes. Presupuesto gratuito."
 >
   <section class="section intro">

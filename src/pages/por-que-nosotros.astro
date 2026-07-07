@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Icon from "../components/Icon.astro";
 import { whyUs } from "../data/why-us";
+import { site } from "../data/site";
 
 const stats = [
   { value: "+10", label: "años de experiencia en autoconsumo" },
@@ -12,14 +13,14 @@ const stats = [
 ---
 
 <Layout
-  title="Por Qué Elegirnos | Solar Sevilla Pro — Instalación de Placas Solares"
+  title={`Por Qué Elegirnos | ${site.name} — Instalación de Placas Solares`}
   description="Instaladores certificados en Sevilla, presupuesto gratuito en 24h y financiación disponible. Más de 350 instalaciones realizadas en la provincia de Sevilla."
 >
   <section class="section intro">
     <div class="container intro-grid">
       <div>
         <span class="eyebrow">Por qué nosotros</span>
-        <h1>Razones para confiar tu instalación a Solar Sevilla Pro</h1>
+        <h1>Razones para confiar tu instalación a {site.name}</h1>
         <p>
           Instalar placas solares es una decisión a largo plazo. Por eso te contamos,
           sin rodeos, cómo trabajamos y qué puedes esperar de nosotros antes de que

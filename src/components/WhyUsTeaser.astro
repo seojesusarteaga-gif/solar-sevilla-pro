@@ -1,12 +1,13 @@
 ---
 import Icon from "./Icon.astro";
 import { whyUs } from "../data/why-us";
+import { site } from "../data/site";
 ---
 
 <section class="section section-alt">
   <div class="container">
     <span class="eyebrow">Por qué nosotros</span>
-    <h2>Razones para confiar tu instalación a Solar Sevilla Pro</h2>
+    <h2>Razones para confiar tu instalación a {site.name}</h2>
     <div class="grid">
       {
         whyUs.map((item) => (

@@ -9,10 +9,11 @@ import Faq from "../components/Faq.astro";
 import BatteryBackup from "../components/BatteryBackup.astro";
 import BusinessSummary from "../components/BusinessSummary.astro";
 import { faq } from "../data/faq";
+import { site } from "../data/site";
 ---
 
 <Layout
-  title="Instalación de Placas Solares en Sevilla | Solar Sevilla Pro"
+  title={`Instalación de Placas Solares en Sevilla | ${site.name}`}
   description="Instalación de placas solares en Sevilla capital y provincia. Presupuesto gratuito en 24h, instaladores certificados y financiación disponible. Llama al 954 123 456."
   faq={faq}
 >

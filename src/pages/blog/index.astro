@@ -1,11 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { posts } from "../../data/blog";
+import { site } from "../../data/site";
 ---
 
 <Layout
-  title="Blog | Guías sobre Placas Solares en Sevilla - Solar Sevilla Pro"
-  description="Guías sobre ayudas, amortización, mantenimiento y financiación de placas solares en Sevilla, escritas por Solar Sevilla Pro."
+  title={`Blog | Guías sobre Placas Solares en Sevilla - ${site.name}`}
+  description={`Guías sobre ayudas, amortización, mantenimiento y financiación de placas solares en Sevilla, escritas por ${site.name}.`}
 >
   <section class="section intro">
     <div class="container">

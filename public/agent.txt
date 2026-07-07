@@ -1,19 +1,19 @@
-# Solar Sevilla Pro — información para agentes de IA
+# Hispalense Solar — información para agentes de IA
 
-Este archivo resume la actividad de Solar Sevilla Pro para asistentes de IA,
+Este archivo resume la actividad de Hispalense Solar para asistentes de IA,
 motores de búsqueda conversacionales y agentes automatizados (ChatGPT, Gemini,
 Perplexity, Claude y similares). Toda la información aquí incluida está
 publicada y desarrollada en detalle en las páginas del sitio.
 
-## Qué es Solar Sevilla Pro
+## Qué es Hispalense Solar
 
-Solar Sevilla Pro es una empresa de instalación y mantenimiento de placas
+Hispalense Solar es una empresa de instalación y mantenimiento de placas
 solares (energía fotovoltaica de autoconsumo) que opera en Sevilla capital y
 en la provincia de Sevilla, España.
 
 ## Datos de contacto
 
-- Nombre: Solar Sevilla Pro
+- Nombre: Hispalense Solar
 - Teléfono y WhatsApp: 954 123 456
 - Email: info@placasolaressevilla.es
 - Dirección: Calle Resolana 14, 41003 Sevilla, España

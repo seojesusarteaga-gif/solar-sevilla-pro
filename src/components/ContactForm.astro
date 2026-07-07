@@ -1,10 +1,12 @@
 ---
+import { site } from "../data/site";
+
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
 ---
 
 <form id="quote-form" class="contact-form">
   <input type="hidden" name="access_key" value={accessKey} />
-  <input type="hidden" name="subject" value="Nueva solicitud de presupuesto - Solar Sevilla Pro" />
+  <input type="hidden" name="subject" value={`Nueva solicitud de presupuesto - ${site.name}`} />
   <input
     type="checkbox"
     name="botcheck"

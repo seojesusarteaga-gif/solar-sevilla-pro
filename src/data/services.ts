@@ -1,8 +1,10 @@
+import { site } from "./site";
+
 export const services = [
   {
     slug: "instalacion-residencial",
     title: "Instalación residencial",
-    metaTitle: "Instalación Residencial de Placas Solares en Sevilla | Solar Sevilla Pro",
+    metaTitle: `Instalación Residencial de Placas Solares en Sevilla | ${site.name}`,
     metaDescription:
       "Instalación residencial de placas solares en Sevilla para viviendas unifamiliares y comunidades de vecinos. Kits con precio cerrado desde 4.200 € y presupuesto gratuito en 24h.",
     summary:
@@ -113,7 +115,7 @@ export const services = [
   {
     slug: "instalacion-comercial",
     title: "Instalación comercial e industrial",
-    metaTitle: "Instalación Comercial e Industrial de Placas Solares en Sevilla | Solar Sevilla Pro",
+    metaTitle: `Instalación Comercial e Industrial de Placas Solares en Sevilla | ${site.name}`,
     metaDescription:
       "Instalación comercial e industrial de placas solares en Sevilla para naves, comercios y explotaciones agrícolas. Estudio de amortización y presupuesto gratuito en 24h.",
     summary:
@@ -193,7 +195,7 @@ export const services = [
   {
     slug: "mantenimiento",
     title: "Mantenimiento y revisión",
-    metaTitle: "Mantenimiento de Placas Solares en Sevilla | Solar Sevilla Pro",
+    metaTitle: `Mantenimiento de Placas Solares en Sevilla | ${site.name}`,
     metaDescription:
       "Mantenimiento y revisión de placas solares en Sevilla: limpieza, comprobación del inversor y del cableado. Conserva el rendimiento y la garantía de tu instalación.",
     summary:
