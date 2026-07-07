@@ -7,9 +7,10 @@ interface Props {
   description: string;
   h1: string;
   datePublished: string;
+  image: { src: string; alt: string; credit: string };
 }
 
-const { title, description, h1, datePublished } = Astro.props;
+const { title, description, h1, datePublished, image } = Astro.props;
 const siteUrl = Astro.site!;
 
 const dateDisplay = new Intl.DateTimeFormat("es-ES", {
@@ -23,6 +24,7 @@ const articleSchema = {
   headline: h1,
   description,
   datePublished,
+  image: `${image.src}?w=1200&q=75&auto=format&fit=crop`,
   author: {
     "@type": "Organization",
     name: site.name,
@@ -42,6 +44,13 @@ const articleSchema = {
       <span class="eyebrow">Blog</span>
       <h1>{h1}</h1>
       <p class="date">Publicado el {dateDisplay}</p>
+      <img
+        class="header-image"
+        src={`${image.src}?w=900&q=75&auto=format&fit=crop`}
+        alt={image.alt}
+        width="900"
+        height="500"
+      />
       <div class="prose">
         <slot />
       </div>
@@ -69,6 +78,13 @@ const articleSchema = {
   .date {
     font-size: 0.9rem;
     color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .header-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
     margin-bottom: 2rem;
   }
 

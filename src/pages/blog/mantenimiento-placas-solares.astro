@@ -1,5 +1,8 @@
 ---
 import BlogLayout from "../../components/BlogLayout.astro";
+import { posts } from "../../data/blog";
+
+const { image } = posts.find((p) => p.slug === "mantenimiento-placas-solares")!;
 ---
 
 <BlogLayout
@@ -7,6 +10,7 @@ import BlogLayout from "../../components/BlogLayout.astro";
   description="Guía de mantenimiento de placas solares: qué revisar, con qué frecuencia y qué señales indican que tu instalación necesita una revisión técnica en Sevilla."
   h1="Mantenimiento de placas solares: guía completa"
   datePublished="2026-07-06"
+  image={image}
 >
   <p>
     Una instalación de placas solares no necesita mantenimiento constante,

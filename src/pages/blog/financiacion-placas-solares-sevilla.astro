@@ -1,5 +1,8 @@
 ---
 import BlogLayout from "../../components/BlogLayout.astro";
+import { posts } from "../../data/blog";
+
+const { image } = posts.find((p) => p.slug === "financiacion-placas-solares-sevilla")!;
 ---
 
 <BlogLayout
@@ -7,6 +10,7 @@ import BlogLayout from "../../components/BlogLayout.astro";
   description="Opciones para financiar una instalación de placas solares en Sevilla: pago al contado, financiación a plazos y cómo combinarla con las ayudas fiscales disponibles en 2026."
   h1="Cómo financiar tu instalación de placas solares en Sevilla"
   datePublished="2026-07-06"
+  image={image}
 >
   <p>
     El coste inicial es, con diferencia, la principal barrera para instalar

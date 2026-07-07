@@ -16,14 +16,24 @@ const stats = [
   description="Instaladores certificados en Sevilla, presupuesto gratuito en 24h y financiación disponible. Más de 350 instalaciones realizadas en la provincia de Sevilla."
 >
   <section class="section intro">
-    <div class="container">
-      <span class="eyebrow">Por qué nosotros</span>
-      <h1>Razones para confiar tu instalación a Solar Sevilla Pro</h1>
-      <p>
-        Instalar placas solares es una decisión a largo plazo. Por eso te contamos,
-        sin rodeos, cómo trabajamos y qué puedes esperar de nosotros antes de que
-        firmes nada.
-      </p>
+    <div class="container intro-grid">
+      <div>
+        <span class="eyebrow">Por qué nosotros</span>
+        <h1>Razones para confiar tu instalación a Solar Sevilla Pro</h1>
+        <p>
+          Instalar placas solares es una decisión a largo plazo. Por eso te contamos,
+          sin rodeos, cómo trabajamos y qué puedes esperar de nosotros antes de que
+          firmes nada.
+        </p>
+      </div>
+      <img
+        class="intro-image"
+        src="https://images.unsplash.com/photo-1668097613572-40b7c11c8727?w=900&q=75&auto=format&fit=crop"
+        alt="Instalador certificado colocando placas solares en un tejado"
+        width="900"
+        height="600"
+        loading="lazy"
+      />
     </div>
   </section>
 
@@ -66,8 +76,27 @@ const stats = [
 </Layout>
 
 <style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
   .intro p {
     max-width: 60ch;
+  }
+
+  .intro-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 760px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .stats-grid {

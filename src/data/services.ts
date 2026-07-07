@@ -7,6 +7,11 @@ export const services = [
       "Instalación residencial de placas solares en Sevilla para viviendas unifamiliares y comunidades de vecinos. Kits con precio cerrado desde 4.200 € y presupuesto gratuito en 24h.",
     summary:
       "Placas solares para viviendas unifamiliares, chalets y comunidades de vecinos, dimensionadas según tu consumo real.",
+    image: {
+      src: "https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2",
+      alt: "Vivienda con instalación de placas solares en el tejado en Sevilla",
+      credit: "Vivint Solar / Unsplash",
+    },
     description: [
       "Diseñamos la instalación fotovoltaica de tu vivienda a partir de tu factura eléctrica real, la orientación del tejado y las horas de sombra a lo largo del año, para que el número de paneles se ajuste a lo que realmente consumes.",
       "Nos encargamos de todo el proceso: proyecto técnico, instalación, alta de autoconsumo ante la compañía eléctrica y, si el ayuntamiento lo requiere, la tramitación de la licencia correspondiente. Tú solo tienes que firmar y empezar a ahorrar.",
@@ -94,6 +99,11 @@ export const services = [
       "Instalación comercial e industrial de placas solares en Sevilla para naves, comercios y explotaciones agrícolas. Estudio de amortización y presupuesto gratuito en 24h.",
     summary:
       "Autoconsumo fotovoltaico para naves, oficinas, comercios y explotaciones agrícolas, con estudio de amortización previo.",
+    image: {
+      src: "https://images.unsplash.com/photo-1782515875218-0cdfea5edd31",
+      alt: "Nave industrial con placas solares instaladas en la cubierta",
+      credit: "Julian Gojani / Unsplash",
+    },
     description: [
       "Para negocios, naves industriales y explotaciones agrícolas, el consumo eléctrico suele concentrarse en horario diurno, justo cuando la producción solar es mayor. Eso hace que el autoconsumo industrial tenga, en la mayoría de los casos, un retorno de la inversión más rápido que en vivienda.",
       "Estudiamos tu curva de consumo, dimensionamos la instalación para tu actividad y te entregamos un informe de amortización estimada antes de que tomes ninguna decisión. Nos encargamos de la ingeniería, la instalación y la legalización de instalaciones de mayor potencia.",
@@ -150,6 +160,11 @@ export const services = [
       "Mantenimiento y revisión de placas solares en Sevilla: limpieza, comprobación del inversor y del cableado. Conserva el rendimiento y la garantía de tu instalación.",
     summary:
       "Revisión periódica, limpieza y monitorización de instalaciones existentes para mantener el rendimiento y la garantía al día.",
+    image: {
+      src: "https://images.unsplash.com/photo-1754619880959-2b0528375883",
+      alt: "Técnico realizando el mantenimiento y limpieza de placas solares",
+      credit: "Florida Solar Fix / Unsplash",
+    },
     description: [
       "Una instalación fotovoltaica sin mantenimiento pierde rendimiento con el tiempo: suciedad acumulada, conexiones que se aflojan o inversores que empiezan a fallar sin que se note en el día a día. Ofrecemos revisión de instalaciones propias y también de instalaciones hechas por otra empresa.",
       "Cada revisión incluye limpieza de módulos, comprobación del inversor y del cableado, y verificación de que la producción registrada coincide con la esperada para la época del año. Te entregamos un informe técnico con el resultado y, si detectamos algo, te lo explicamos antes de actuar.",

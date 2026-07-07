@@ -1,5 +1,8 @@
 ---
 import BlogLayout from "../../components/BlogLayout.astro";
+import { posts } from "../../data/blog";
+
+const { image } = posts.find((p) => p.slug === "cuanto-se-tarda-en-amortizar-placas-solares")!;
 ---
 
 <BlogLayout
@@ -7,6 +10,7 @@ import BlogLayout from "../../components/BlogLayout.astro";
   description="Plazo real de amortización de una instalación de placas solares en Sevilla: qué factores lo determinan y cómo calculamos el retorno de la inversión en tu presupuesto."
   h1="¿Cuánto se tarda en amortizar placas solares en Sevilla?"
   datePublished="2026-07-06"
+  image={image}
 >
   <p>
     Es la pregunta que más nos hacen antes de instalar placas solares, y la
