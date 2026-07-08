@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://solar-sevilla-pro.vercel.app/sitemap-index.xml
+Sitemap: https://hispalensesolar.es/sitemap-index.xml

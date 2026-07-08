@@ -17,7 +17,7 @@ en la provincia de Sevilla, España.
 - Teléfono y WhatsApp: 954 123 456
 - Email: info@placasolaressevilla.es
 - Dirección: Calle Resolana 14, 41003 Sevilla, España
-- Web: https://solar-sevilla-pro.vercel.app
+- Web: https://hispalensesolar.es
 
 ## Servicios
 
