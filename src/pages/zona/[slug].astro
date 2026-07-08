@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
 import { site } from "../../data/site";
-import { provinceMunicipalities, municipalityImage } from "../../data/coverage";
+import { provinceMunicipalities } from "../../data/coverage";
 
 export function getStaticPaths() {
   return provinceMunicipalities.map((town) => ({
@@ -34,16 +34,14 @@ const localBusinessSchema = {
 
 const faqSchema = {
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: town.faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: town.faq.answer,
-      },
+  mainEntity: town.faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
     },
-  ],
+  })),
 };
 ---
 
@@ -63,8 +61,8 @@ const faqSchema = {
       </div>
       <img
         class="intro-image"
-        src={`${municipalityImage.src}?w=900&q=75&auto=format&fit=crop`}
-        alt={`Placas solares instaladas en un tejado en ${town.name}`}
+        src={town.image.src}
+        alt={town.image.alt}
         width="900"
         height="600"
         loading="lazy"
@@ -73,6 +71,22 @@ const faqSchema = {
   </section>
 
   <section class="section section-alt">
+    <div class="container">
+      <h2>Datos de {town.name}</h2>
+      <div class="data-grid">
+        <div class="data-card">
+          <span class="data-label">Población</span>
+          <p>{town.population}</p>
+        </div>
+        <div class="data-card">
+          <span class="data-label">Vivienda predominante</span>
+          <p>{town.housingType}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <h2>Por qué instalar placas solares en {town.name}</h2>
       <ul class="highlights">
@@ -85,6 +99,14 @@ const faqSchema = {
           ))
         }
       </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container solar-fit-card">
+      <span class="eyebrow">¿Tiene sentido instalar aquí?</span>
+      <h2>Por qué compensa en {town.name}</h2>
+      <p>{town.solarFit}</p>
     </div>
   </section>
 
@@ -101,7 +123,7 @@ const faqSchema = {
     </div>
   </section>
 
-  <Faq items={[town.faq]} title={`Preguntas frecuentes sobre placas solares en ${town.name}`} />
+  <Faq items={town.faq} title={`Preguntas frecuentes sobre placas solares en ${town.name}`} />
 
   <section class="section cta-section">
     <div class="container cta-inner">
@@ -154,6 +176,48 @@ const faqSchema = {
     width: 100%;
     height: auto;
     border-radius: 16px;
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .data-card {
+    background: var(--color-white);
+    border: 1px solid #e6e9f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .data-label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    color: var(--color-solar-yellow);
+    background: var(--color-navy);
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+
+  .data-card p {
+    margin: 0;
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+
+  .solar-fit-card {
+    max-width: 760px;
+  }
+
+  .solar-fit-card p {
+    max-width: 70ch;
   }
 
   .context-grid {
@@ -240,7 +304,8 @@ const faqSchema = {
 
   @media (max-width: 760px) {
     .intro-grid,
-    .context-grid {
+    .context-grid,
+    .data-grid {
       grid-template-columns: 1fr;
     }
   }
