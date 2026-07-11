@@ -12,7 +12,12 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { name, phone, installation_type, message } = req.body ?? {};
+  const { name, phone, installation_type, message, botcheck } = req.body ?? {};
+
+  if (botcheck) {
+    res.status(200).json({ success: true });
+    return;
+  }
 
   if (!name || !phone) {
     res.status(400).json({ error: "Faltan campos obligatorios" });
