@@ -69,6 +69,15 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
       if (result.success) {
         status.textContent = "Gracias. Hemos recibido tu solicitud y te contactaremos en breve.";
         status.classList.add("success");
+
+        fetch("/api/telegram-notify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        }).catch(() => {
+          // Notificación best-effort: un fallo aquí no debe afectar al usuario.
+        });
+
         form.reset();
       } else {
         status.textContent = "No se ha podido enviar la solicitud. Prueba de nuevo o llámanos directamente.";
