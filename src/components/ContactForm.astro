@@ -54,7 +54,7 @@
     status.classList.remove("error", "success");
 
     try {
-      const response = await fetch("/api/telegram-notify", {
+      const response = await fetch("/api/lead-notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Object.fromEntries(formData)),
