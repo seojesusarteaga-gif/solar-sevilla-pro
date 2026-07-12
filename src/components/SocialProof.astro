@@ -1,0 +1,108 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="social-proof">
+  <div class="container proof-inner">
+    <div class="stat">
+      <span class="stat-number">+350</span>
+      <span class="stat-label">instalaciones en Sevilla y provincia</span>
+    </div>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="stat">
+      <span class="stat-number">+10</span>
+      <span class="stat-label">años de experiencia</span>
+    </div>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="stat">
+      <span class="stat-number">25</span>
+      <span class="stat-label">años de garantía en paneles</span>
+    </div>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="badges">
+      <span class="badge">Instalador RITE</span>
+      <span class="badge">Certificado CTE</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    background: var(--color-navy);
+    color: var(--color-white);
+    padding: 1.5rem 0;
+    border-top: 3px solid var(--color-solar-yellow);
+  }
+
+  .proof-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-solar-yellow);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 14ch;
+    line-height: 1.3;
+  }
+
+  .divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .badges {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--color-solar-yellow);
+    border-radius: 999px;
+    color: var(--color-solar-yellow);
+  }
+
+  @media (max-width: 640px) {
+    .proof-inner {
+      gap: 1.25rem;
+    }
+
+    .divider {
+      display: none;
+    }
+
+    .stat {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .stat-label {
+      max-width: none;
+      text-align: center;
+    }
+  }
+</style>

@@ -8,6 +8,8 @@ import QuoteSection from "../components/QuoteSection.astro";
 import Faq from "../components/Faq.astro";
 import BatteryBackup from "../components/BatteryBackup.astro";
 import BusinessSummary from "../components/BusinessSummary.astro";
+import SocialProof from "../components/SocialProof.astro";
+import SavingsPAS from "../components/SavingsPAS.astro";
 import { faq } from "../data/faq";
 import { site } from "../data/site";
 ---
@@ -18,6 +20,8 @@ import { site } from "../data/site";
   faq={faq}
 >
   <Hero />
+  <SocialProof />
+  <SavingsPAS />
   <WhyUsTeaser />
   <ServicesTeaser />
   <BatteryBackup />

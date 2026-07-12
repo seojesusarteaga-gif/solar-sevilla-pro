@@ -30,11 +30,12 @@
   </div>
 
   <div class="field">
-    <label for="message">Mensaje *</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+    <label for="message">Mensaje <span class="optional">(opcional)</span></label>
+    <textarea id="message" name="message" rows="4"></textarea>
   </div>
 
   <button type="submit" class="btn btn-primary">Solicitar presupuesto gratuito</button>
+  <p class="form-urgency">Te respondemos en menos de 24 horas</p>
   <p class="form-status" role="status" aria-live="polite"></p>
 </form>
 
@@ -141,5 +142,17 @@
 
   .form-status.error {
     color: #b3261e;
+  }
+
+  .optional {
+    font-weight: 400;
+    color: #8892a4;
+  }
+
+  .form-urgency {
+    margin: -0.3rem 0 0;
+    font-size: 0.82rem;
+    color: #5a6a7a;
+    font-style: italic;
   }
 </style>

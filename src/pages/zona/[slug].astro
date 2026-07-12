@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { site } from "../../data/site";
 import { provinceMunicipalities } from "../../data/coverage";
 
@@ -52,10 +53,16 @@ const faqSchema = {
   description={`Instalación de placas solares en ${town.name}. Presupuesto gratuito en 24h, instaladores certificados y financiación disponible. Llama al 954 123 456.`}
   extraSchema={[localBusinessSchema, faqSchema]}
 >
+  <div class="container">
+    <Breadcrumbs items={[
+      { label: "Inicio", href: "/" },
+      { label: "Zona de cobertura", href: "/zona-cobertura" },
+      { label: town.name },
+    ]} />
+  </div>
   <section class="section intro">
     <div class="container intro-grid">
       <div>
-        <a class="back-link" href="/zona-cobertura">← Volver a zona de cobertura</a>
         <span class="eyebrow">Zona de cobertura</span>
         <h1>Placas solares en {town.name}</h1>
         <p>{town.intro}</p>
@@ -126,6 +133,17 @@ const faqSchema = {
   </section>
 
   <Faq items={town.faq} title={`Preguntas frecuentes sobre placas solares en ${town.name}`} />
+
+  <section class="section related-articles">
+    <div class="container">
+      <h2>Artículos útiles si estás valorando instalar en {town.name}</h2>
+      <ul class="article-links">
+        <li><a href="/blog/ayudas-autoconsumo-sevilla-2026">Ayudas y subvenciones para placas solares en Sevilla (2026)</a></li>
+        <li><a href="/blog/cuanto-se-tarda-en-amortizar-placas-solares">¿Cuánto se tarda en amortizar la instalación?</a></li>
+        <li><a href="/blog/financiacion-placas-solares-sevilla">Cómo financiar tu instalación de placas solares</a></li>
+      </ul>
+    </div>
+  </section>
 
   <section class="section cta-section">
     <div class="container cta-inner">
@@ -298,6 +316,26 @@ const faqSchema = {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  .article-links {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .article-links a {
+    color: var(--color-navy);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article-links a:hover {
+    color: var(--color-navy-light);
   }
 
   .back-section {

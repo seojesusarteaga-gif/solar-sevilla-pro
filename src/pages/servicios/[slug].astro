@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/Icon.astro";
 import BatteryBackup from "../../components/BatteryBackup.astro";
 import Faq from "../../components/Faq.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { site } from "../../data/site";
 import { services } from "../../data/services";
 
@@ -50,10 +51,16 @@ const faqSchema = {
   description={service.metaDescription}
   extraSchema={[serviceSchema, faqSchema]}
 >
+  <div class="container">
+    <Breadcrumbs items={[
+      { label: "Inicio", href: "/" },
+      { label: "Servicios", href: "/servicios" },
+      { label: service.title },
+    ]} />
+  </div>
   <section class="section intro">
     <div class="container intro-grid">
       <div>
-        <a class="back-link" href="/servicios">← Volver a servicios</a>
         <span class="eyebrow">Servicios</span>
         <h1>{service.title}</h1>
         {service.description.map((paragraph) => <p>{paragraph}</p>)}

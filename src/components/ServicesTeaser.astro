@@ -20,6 +20,7 @@ import { services } from "../data/services";
             />
             <div class="card-body">
               <h3>{service.title}</h3>
+              <p class="tagline">{service.tagline}</p>
               <p>{service.summary}</p>
             </div>
           </a>
@@ -65,6 +66,18 @@ import { services } from "../data/services";
 
   .card h3 {
     color: var(--color-navy);
+    margin-bottom: 0.2rem;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--color-solar-yellow) !important;
+    background: var(--color-navy);
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem !important;
   }
 
   .card p {
