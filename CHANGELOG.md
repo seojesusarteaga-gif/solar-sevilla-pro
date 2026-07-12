@@ -5,6 +5,33 @@ Cada entrada documenta qué se hizo, por qué y qué decisiones se tomaron, para
 
 ---
 
+## 2026-07-12 — Consistencia de marca y email
+
+**Qué:** Auditoría completa de marca "Hispalense Solar" en toda la web.
+
+**Cambios:**
+- Email actualizado de `info@placasolaressevilla.es` a `info@hispalensesolar.es` (site.ts, agent.txt)
+- Añadido `og:site_name` con valor "Hispalense Solar" en todas las páginas
+- Añadido `legalName` al schema Organization
+- Añadido `brand` y `alternateName` ("Placas solares Sevilla") al schema LocalBusiness de municipios
+
+**Por qué:** El email usaba el dominio antiguo que no coincidía con la marca. Los schemas estaban incompletos — Google recomienda legalName en Organization y brand en LocalBusiness para mejor comprensión de la entidad.
+
+---
+
+## 2026-07-12 — Email con Resend
+
+**Qué:** Se añadió Resend como segundo canal de notificación. Los leads ahora se envían por Telegram y email en paralelo.
+
+**Decisiones:**
+- Endpoint renombrado de `telegram-notify` a `lead-notify` (ya no es solo Telegram)
+- Telegram y email se disparan con `Promise.allSettled` — si uno falla, el otro sigue
+- Variables en Vercel: `RESEND_API_KEY` y `LEAD_EMAIL_TO`
+- Dominio `hispalensesolar.es` registrado en Resend (pendiente verificación DNS: DKIM + SPF)
+- El `from` del email es `leads@hispalensesolar.es`
+
+---
+
 ## 2026-07-11 — Formulario directo a Telegram
 
 **Qué:** Se eliminó Web3Forms del formulario de contacto. El envío va directamente a `/api/telegram-notify`.
