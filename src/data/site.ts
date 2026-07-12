@@ -3,7 +3,7 @@ export const site = {
   phone: "954 123 456",
   phoneHref: "tel:+34954123456",
   whatsappHref: "https://wa.me/34954123456",
-  email: "info@placasolaressevilla.es",
+  email: "info@hispalensesolar.es",
   address: {
     street: "Calle Resolana 14",
     postalCode: "41003",

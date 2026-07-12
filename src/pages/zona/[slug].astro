@@ -17,6 +17,8 @@ const { town } = Astro.props;
 const localBusinessSchema = {
   "@type": "LocalBusiness",
   name: site.name,
+  alternateName: "Placas solares Sevilla",
+  brand: { "@type": "Brand", name: site.name },
   telephone: site.phoneHref.replace("tel:", ""),
   email: site.email,
   address: {

@@ -23,6 +23,7 @@ const organizationSchema = {
   "@type": "Organization",
   "@id": `${siteUrl}#organization`,
   name: site.name,
+  legalName: site.name,
   url: siteUrl.toString(),
   telephone: site.phoneHref.replace("tel:", ""),
   email: site.email,
@@ -88,6 +89,7 @@ const jsonLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).toString()} />
+    <meta property="og:site_name" content={site.name} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
