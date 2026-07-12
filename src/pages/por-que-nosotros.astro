@@ -20,7 +20,8 @@ const stats = [
     <div class="container intro-grid">
       <div>
         <span class="eyebrow">Por qué nosotros</span>
-        <h1>Razones para confiar tu instalación a {site.name}</h1>
+        <p class="page-headline">Razones para confiar tu instalación a {site.name}</p>
+        <h1>Instaladores de placas solares en Sevilla</h1>
         <p>
           Instalar placas solares es una decisión a largo plazo. Por eso te contamos,
           sin rodeos, cómo trabajamos y qué puedes esperar de nosotros antes de que
@@ -82,6 +83,12 @@ const stats = [
     grid-template-columns: 1.1fr 0.9fr;
     gap: 2.5rem;
     align-items: center;
+  }
+
+  h1 {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    font-weight: 600;
+    color: var(--color-text-muted);
   }
 
   .intro p {
