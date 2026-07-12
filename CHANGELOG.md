@@ -5,6 +5,36 @@ Cada entrada documenta qué se hizo, por qué y qué decisiones se tomaron, para
 
 ---
 
+## 2026-07-12 — Optimización SEO, UX, copy y conversión
+
+**Qué:** Aplicación conjunta de 8 frameworks especializados sobre toda la web.
+
+**Frameworks utilizados:**
+- **StoryBrand** (Donald Miller) — Hero reescrito: el cliente es el héroe, no la empresa
+- **PAS** (Problem-Agitate-Solution) — Nueva sección de ahorro con datos reales de factura
+- **Cialdini** (7 principios de persuasión) — Barra de prueba social (+350 instalaciones, badges RITE/CTE)
+- **Fogg Behavior Model** (Stanford) — CTA flotante en móvil, formulario simplificado
+- **Gestalt** — Alternancia de fondos de sección para jerarquía visual clara
+- **Nielsen Norman** (10 heurísticas) — Breadcrumbs con schema BreadcrumbList, BusinessSummary oculto visualmente
+- **Topical Authority** — Internal links blog ↔ municipios ↔ servicios, artículos relacionados en zona pages
+- **Jobs To Be Done** (Christensen) — Taglines orientados al job en las cards de servicio
+
+**Componentes nuevos:**
+- `SocialProof.astro` — Barra de cifras y badges tras el Hero
+- `SavingsPAS.astro` — Sección PAS con stats (70%, 3.000h, 5-8 años)
+- `Breadcrumbs.astro` — Reutilizable, con schema BreadcrumbList automático
+
+**Decisiones:**
+- El campo "Mensaje" del formulario pasa a opcional (reduce fricción, principio de compromiso gradual)
+- "Te respondemos en menos de 24 horas" junto al botón de envío (micro-urgencia real, no artificial)
+- CTA flotante solo en móvil (≤860px), fondo amarillo, fijo en la parte inferior
+- BusinessSummary mantiene su contenido en el DOM para LLMs pero con `sr-only` para no saturar la UI
+- Los breadcrumbs reemplazan los links "← Volver a..." en servicios y municipios
+- Los taglines JTBD se añadieron como campo `tagline` en `services.ts` para mantener datos centralizados
+- Internal links: el artículo de ayudas ahora enlaza a municipios concretos (Dos Hermanas, Mairena, Tomares) con sus bonificaciones IBI
+
+---
+
 ## 2026-07-12 — Consistencia de marca y email
 
 **Qué:** Auditoría completa de marca "Hispalense Solar" en toda la web.
