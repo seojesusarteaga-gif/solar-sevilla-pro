@@ -70,7 +70,7 @@ const faqSchema = {
       </div>
       <img
         class="intro-image"
-        src={`${service.image.src}?w=900&q=75&auto=format&fit=crop`}
+        src={`${service.image.src}?w=700&q=60&auto=format&fit=crop`}
         alt={service.image.alt}
         width="900"
         height="600"
@@ -113,7 +113,7 @@ const faqSchema = {
 
   <section class="section section-alt">
     <div class="container">
-      <h2>Qué incluye este servicio</h2>
+      <h2>Qué incluye {service.title.toLowerCase()}</h2>
       <ul class="includes">
         {
           service.includes.map((item) => (
@@ -129,7 +129,7 @@ const faqSchema = {
 
   <section class="section">
     <div class="container">
-      <h2>Cómo trabajamos</h2>
+      <h2>Proceso de {service.title.toLowerCase()}</h2>
       <ol class="process">
         {
           service.process.map((step, index) => (
@@ -148,7 +148,7 @@ const faqSchema = {
 
   <section class="section section-alt">
     <div class="container">
-      <h2>Beneficios</h2>
+      <h2>Beneficios de {service.title.toLowerCase()}</h2>
       <ul class="benefits">
         {
           service.benefits.map((benefit) => (
@@ -165,7 +165,7 @@ const faqSchema = {
   <section class="section example-section">
     <div class="container example-card">
       <span class="eyebrow">Caso práctico</span>
-      <h2>Un ejemplo real de proyecto</h2>
+      <h2>Caso práctico de {service.title.toLowerCase()}</h2>
       <p>{service.example}</p>
       <p class="example-note">
         Ejemplo ilustrativo basado en proyectos habituales de este tipo, no un cliente concreto.
@@ -175,7 +175,7 @@ const faqSchema = {
 
   <section class="section price-section">
     <div class="container price-card">
-      <h2>Precio orientativo</h2>
+      <h2>Precio de {service.title.toLowerCase()}</h2>
       <p>{service.priceRange}</p>
     </div>
   </section>

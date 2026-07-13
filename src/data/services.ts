@@ -5,9 +5,9 @@ export const services = [
     slug: "instalacion-residencial",
     title: "Instalación residencial",
     tagline: "Para dejar de depender de la factura de la luz",
-    metaTitle: `Instalación Residencial de Placas Solares en Sevilla | ${site.name}`,
+    metaTitle: `Placas Solares para Viviendas en Sevilla | ${site.name}`,
     metaDescription:
-      "Instalación residencial de placas solares en Sevilla para viviendas unifamiliares y comunidades de vecinos. Kits con precio cerrado desde 4.200 € y presupuesto gratuito en 24h.",
+      "Placas solares para viviendas en Sevilla. Kits desde 4.200 € con precio cerrado para unifamiliares y comunidades. Presupuesto gratuito en 24h.",
     summary:
       "Placas solares para viviendas unifamiliares, chalets y comunidades de vecinos, dimensionadas según tu consumo real.",
     image: {
@@ -117,9 +117,9 @@ export const services = [
     slug: "instalacion-comercial",
     title: "Instalación comercial e industrial",
     tagline: "Para reducir los costes fijos de tu negocio",
-    metaTitle: `Instalación Comercial e Industrial de Placas Solares en Sevilla | ${site.name}`,
+    metaTitle: `Placas Solares Comerciales en Sevilla | ${site.name}`,
     metaDescription:
-      "Instalación comercial e industrial de placas solares en Sevilla para naves, comercios y explotaciones agrícolas. Estudio de amortización y presupuesto gratuito en 24h.",
+      "Placas solares para naves, comercios y explotaciones agrícolas en Sevilla. Estudio de amortización incluido. Presupuesto gratuito en 24h.",
     summary:
       "Autoconsumo fotovoltaico para naves, oficinas, comercios y explotaciones agrícolas, con estudio de amortización previo.",
     image: {
@@ -198,9 +198,9 @@ export const services = [
     slug: "mantenimiento",
     title: "Mantenimiento y revisión",
     tagline: "Para que tu instalación rinda como el primer día",
-    metaTitle: `Mantenimiento de Placas Solares en Sevilla | ${site.name}`,
+    metaTitle: `Mantenimiento Placas Solares Sevilla | ${site.name}`,
     metaDescription:
-      "Mantenimiento y revisión de placas solares en Sevilla: limpieza, comprobación del inversor y del cableado. Conserva el rendimiento y la garantía de tu instalación.",
+      "Mantenimiento de placas solares en Sevilla: limpieza, comprobación del inversor y cableado. Conserva el rendimiento y la garantía de tu instalación.",
     summary:
       "Revisión periódica, limpieza y monitorización de instalaciones existentes para mantener el rendimiento y la garantía al día.",
     image: {
