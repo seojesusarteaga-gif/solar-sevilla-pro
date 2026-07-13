@@ -1,7 +1,8 @@
 ---
 import Icon from "./Icon.astro";
-import { navLinks } from "../data/nav";
 import { site } from "../data/site";
+import { services } from "../data/services";
+import { capital, provinceMunicipalities } from "../data/coverage";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -14,19 +15,82 @@ const currentPath = Astro.url.pathname;
     </a>
 
     <nav class="nav" id="site-nav">
-      <ul>
-        {
-          navLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                aria-current={currentPath === link.href ? "page" : undefined}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
+      <ul class="nav-list">
+        <li>
+          <a href="/" class="nav-link" aria-current={currentPath === "/" ? "page" : undefined}>
+            Inicio
+          </a>
+        </li>
+
+        <li class="has-mega">
+          <a href="/servicios" class="nav-link" aria-current={currentPath.startsWith("/servicios") ? "page" : undefined}>
+            Servicios
+            <Icon name="chevron-down" class="chevron" />
+          </a>
+          <div class="mega-panel">
+            <div class="mega-inner">
+              <p class="mega-heading">Nuestros servicios de energía solar</p>
+              <div class="mega-services-grid">
+                {services.map((s) => (
+                  <a class="mega-service-card" href={`/servicios/${s.slug}`}>
+                    <span class="mega-service-title">{s.title}</span>
+                    <span class="mega-service-tagline">{s.tagline}</span>
+                  </a>
+                ))}
+              </div>
+              <div class="mega-footer">
+                <a href="/servicios" class="mega-footer-link">Ver todos los servicios →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="has-mega">
+          <a href="/zona-cobertura" class="nav-link" aria-current={currentPath.startsWith("/zona") ? "page" : undefined}>
+            Zonas
+            <Icon name="chevron-down" class="chevron" />
+          </a>
+          <div class="mega-panel mega-panel-zona">
+            <div class="mega-inner">
+              <p class="mega-heading">Zona de cobertura</p>
+              <div class="mega-zona-layout">
+                <a class="mega-capital-card" href="/zona-cobertura">
+                  <span class="mega-capital-badge">Zona principal</span>
+                  <span class="mega-capital-name">{capital.name}</span>
+                  <span class="mega-capital-desc">Azoteas, unifamiliares y comunidades</span>
+                </a>
+                <div class="mega-towns-grid">
+                  {provinceMunicipalities.map((town) => (
+                    <a class="mega-town-link" href={`/zona/${town.slug}`}>
+                      {town.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div class="mega-footer">
+                <a href="/zona-cobertura" class="mega-footer-link">Ver toda la zona de cobertura →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <a href="/por-que-nosotros" class="nav-link" aria-current={currentPath === "/por-que-nosotros" ? "page" : undefined}>
+            Nosotros
+          </a>
+        </li>
+
+        <li>
+          <a href="/blog" class="nav-link" aria-current={currentPath.startsWith("/blog") ? "page" : undefined}>
+            Blog
+          </a>
+        </li>
+
+        <li>
+          <a href="/contacto" class="nav-link" aria-current={currentPath === "/contacto" ? "page" : undefined}>
+            Contacto
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -66,6 +130,30 @@ const currentPath = Astro.url.pathname;
     const isOpen = nav?.classList.toggle("open");
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     toggle.classList.toggle("open", Boolean(isOpen));
+    if (!isOpen) {
+      document.querySelectorAll(".has-mega.expanded").forEach((el) => el.classList.remove("expanded"));
+    }
+  });
+
+  const megaTriggers = document.querySelectorAll<HTMLAnchorElement>(".has-mega > .nav-link");
+  const isMobile = () => window.matchMedia("(max-width: 980px)").matches;
+
+  megaTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      if (isMobile()) {
+        e.preventDefault();
+        const li = trigger.parentElement!;
+        const wasExpanded = li.classList.contains("expanded");
+        document.querySelectorAll(".has-mega.expanded").forEach((el) => el.classList.remove("expanded"));
+        if (!wasExpanded) li.classList.add("expanded");
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".has-mega.expanded").forEach((el) => el.classList.remove("expanded"));
+    }
   });
 </script>
 
@@ -108,26 +196,213 @@ const currentPath = Astro.url.pathname;
     flex: 1;
   }
 
-  .nav ul {
+  .nav-list {
     list-style: none;
     display: flex;
-    gap: 1.75rem;
+    gap: 0.25rem;
     margin: 0;
     padding: 0;
+    align-items: center;
   }
 
-  .nav a {
+  .nav-link {
     color: var(--color-white);
     text-decoration: none;
     font-size: 0.95rem;
     opacity: 0.85;
+    padding: 0.5rem 0.65rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: opacity 0.15s;
   }
 
-  .nav a:hover,
-  .nav a[aria-current="page"] {
+  .nav-link:hover,
+  .nav-link[aria-current="page"] {
     opacity: 1;
     color: var(--color-solar-yellow);
   }
+
+  .nav-link :global(.chevron) {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s;
+  }
+
+  /* ── Mega menu (desktop) ── */
+
+  .has-mega {
+    position: static;
+  }
+
+  .mega-panel {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--color-white);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+    border-top: 3px solid var(--color-solar-yellow);
+    z-index: 100;
+  }
+
+  .has-mega:hover .mega-panel,
+  .has-mega:focus-within .mega-panel {
+    display: block;
+  }
+
+  .has-mega:hover .nav-link :global(.chevron),
+  .has-mega:focus-within .nav-link :global(.chevron) {
+    transform: rotate(180deg);
+  }
+
+  .mega-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 1.75rem 1.25rem 1.5rem;
+  }
+
+  .mega-heading {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem;
+  }
+
+  /* ── Services panel ── */
+
+  .mega-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .mega-service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 1.5px solid #e6e9f0;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+
+  .mega-service-card:hover {
+    border-color: var(--color-solar-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .mega-service-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-navy);
+  }
+
+  .mega-service-tagline {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  /* ── Zona panel ── */
+
+  .mega-zona-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .mega-capital-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem;
+    border-radius: 10px;
+    background: var(--color-navy);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .mega-capital-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .mega-capital-badge {
+    display: inline-block;
+    background: var(--color-solar-yellow);
+    color: var(--color-navy);
+    font-weight: 700;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    align-self: flex-start;
+  }
+
+  .mega-capital-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-white);
+  }
+
+  .mega-capital-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+  }
+
+  .mega-towns-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.15rem 0.5rem;
+  }
+
+  .mega-town-link {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--color-navy);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .mega-town-link:hover {
+    background: var(--color-offwhite);
+    color: var(--color-navy);
+  }
+
+  /* ── Mega footer ── */
+
+  .mega-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e6e9f0;
+  }
+
+  .mega-footer-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .mega-footer-link:hover {
+    color: var(--color-solar-yellow);
+    text-decoration: underline;
+  }
+
+  /* ── CTA buttons (header) ── */
 
   .whatsapp {
     display: flex;
@@ -195,7 +470,13 @@ const currentPath = Astro.url.pathname;
     display: block;
   }
 
+  /* ── Mobile ── */
+
   @media (max-width: 980px) {
+    .site-header {
+      position: sticky;
+    }
+
     .nav {
       position: absolute;
       top: 100%;
@@ -203,16 +484,112 @@ const currentPath = Astro.url.pathname;
       right: 0;
       background: var(--color-navy);
       display: none;
-      padding: 1rem 1.25rem 1.5rem;
+      padding: 0.5rem 1.25rem 1.5rem;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .nav.open {
       display: block;
     }
 
-    .nav ul {
+    .nav-list {
       flex-direction: column;
-      gap: 1rem;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .nav-link {
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Hide mega panels by default on mobile */
+    .has-mega .mega-panel {
+      display: none !important;
+      position: static;
+      background: transparent;
+      box-shadow: none;
+      border-top: none;
+    }
+
+    .has-mega.expanded .mega-panel {
+      display: block !important;
+    }
+
+    .has-mega.expanded .nav-link :global(.chevron) {
+      transform: rotate(180deg);
+    }
+
+    .mega-inner {
+      padding: 0.5rem 0 1rem;
+    }
+
+    .mega-heading {
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 0.75rem;
+    }
+
+    .mega-services-grid {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .mega-service-card {
+      border-color: rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1rem;
+    }
+
+    .mega-service-card:hover {
+      border-color: var(--color-solar-yellow);
+      transform: none;
+      box-shadow: none;
+    }
+
+    .mega-service-title {
+      color: var(--color-white);
+      font-size: 0.95rem;
+    }
+
+    .mega-service-tagline {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.825rem;
+    }
+
+    .mega-zona-layout {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .mega-capital-card {
+      padding: 1rem;
+    }
+
+    .mega-towns-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .mega-town-link {
+      color: rgba(255, 255, 255, 0.85);
+      padding: 0.5rem 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .mega-town-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--color-solar-yellow);
+    }
+
+    .mega-footer {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .mega-footer-link {
+      color: var(--color-solar-yellow);
+      font-size: 0.85rem;
     }
 
     .menu-toggle {
