@@ -21,6 +21,7 @@ import Icon from "./Icon.astro";
       </button>
     </div>
     <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-options" id="chat-options" hidden></div>
     <form class="chat-input-form" id="chat-form">
       <input
         type="text"
@@ -39,19 +40,70 @@ import Icon from "./Icon.astro";
 </div>
 
 <script>
-  const GREETING = "Hola, soy el asistente de Hispalense Solar. ¿Estás pensando en instalar placas solares? Te ayudo y te paso presupuesto sin compromiso.";
+  const STEPS = [
+    {
+      key: "greeting",
+      bot: "Hola, soy el asistente de Hispalense Solar. ¿Estás pensando en instalar placas solares? Te ayudo y te paso presupuesto sin compromiso.",
+      options: ["Sí, quiero información", "Solo estoy mirando"],
+      next: (answer: string) => "name",
+    },
+    {
+      key: "name",
+      bot: "Perfecto. ¿Cómo te llamas?",
+      field: "name",
+      next: () => "type",
+    },
+    {
+      key: "type",
+      bot: (data: Record<string, string>) => `Encantado, ${data.name}. ¿La instalación sería para una vivienda o para un negocio/nave?`,
+      options: ["Residencial (vivienda)", "Comercial (negocio/nave)"],
+      field: "installation_type",
+      transform: (v: string) => v.startsWith("Residencial") ? "Residencial" : "Comercial",
+      next: () => "municipality",
+    },
+    {
+      key: "municipality",
+      bot: "¿En qué municipio de Sevilla se encuentra?",
+      options: ["Sevilla capital", "Dos Hermanas", "Alcalá de Guadaíra", "Otro municipio"],
+      field: "municipality",
+      next: () => "roof",
+    },
+    {
+      key: "roof",
+      bot: "¿Tienes tejado o cubierta propia donde instalar los paneles?",
+      options: ["Sí, tengo tejado propio", "No, es comunitario", "No estoy seguro"],
+      field: "own_roof",
+      next: () => "phone",
+    },
+    {
+      key: "phone",
+      bot: "Último paso. ¿En qué teléfono te contactamos para darte el presupuesto?",
+      field: "phone",
+      validate: (v: string) => /\d{9}/.test(v.replace(/\s/g, "")) ? null : "Por favor, introduce un teléfono válido de 9 dígitos.",
+      next: () => "confirm",
+    },
+    {
+      key: "confirm",
+      bot: (data: Record<string, string>) =>
+        `Perfecto, confirmo tus datos:\n• Nombre: ${data.name}\n• Tipo: ${data.installation_type}\n• Municipio: ${data.municipality}\n• Tejado: ${data.own_roof}\n• Teléfono: ${data.phone}\n\n¿Todo correcto?`,
+      options: ["Sí, enviar", "No, corregir"],
+      next: (answer: string) => answer.startsWith("Sí") ? "send" : "name",
+    },
+  ];
 
   const fab = document.getElementById("chat-fab")!;
   const win = document.getElementById("chat-window")!;
   const closeBtn = document.getElementById("chat-close")!;
   const messagesEl = document.getElementById("chat-messages")!;
+  const optionsEl = document.getElementById("chat-options")!;
   const form = document.getElementById("chat-form") as HTMLFormElement;
   const input = document.getElementById("chat-input") as HTMLInputElement;
 
-  let conversation: { role: string; content: string }[] = [];
-  let leadSent = false;
+  const data: Record<string, string> = {};
+  let currentStep = 0;
+  let done = false;
 
-  function addMessage(role: string, text: string) {
+  function addMsg(role: string, text: string) {
     const div = document.createElement("div");
     div.className = `msg msg-${role}`;
     div.textContent = text;
@@ -59,27 +111,103 @@ import Icon from "./Icon.astro";
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  function addTyping() {
-    const div = document.createElement("div");
-    div.className = "msg msg-assistant typing";
-    div.id = "typing";
-    div.textContent = "...";
-    messagesEl.appendChild(div);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+  function showOptions(opts: string[]) {
+    optionsEl.innerHTML = "";
+    opts.forEach((label) => {
+      const btn = document.createElement("button");
+      btn.className = "chat-option";
+      btn.textContent = label;
+      btn.type = "button";
+      btn.addEventListener("click", () => handleAnswer(label));
+      optionsEl.appendChild(btn);
+    });
+    optionsEl.hidden = false;
+    input.parentElement!.hidden = true;
   }
 
-  function removeTyping() {
-    document.getElementById("typing")?.remove();
+  function showInput(placeholder = "Escribe tu respuesta...") {
+    optionsEl.hidden = true;
+    input.parentElement!.hidden = false;
+    input.placeholder = placeholder;
+    input.focus();
+  }
+
+  function runStep() {
+    const step = STEPS[currentStep];
+    const botText = typeof step.bot === "function" ? step.bot(data) : step.bot;
+
+    setTimeout(() => {
+      addMsg("assistant", botText);
+      if (step.options) {
+        showOptions(step.options);
+      } else {
+        showInput(step.key === "phone" ? "Ej: 612 345 678" : "Escribe tu respuesta...");
+      }
+    }, 400);
+  }
+
+  function handleAnswer(answer: string) {
+    const step = STEPS[currentStep];
+
+    if (step.validate) {
+      const err = step.validate(answer);
+      if (err) {
+        addMsg("assistant", err);
+        return;
+      }
+    }
+
+    addMsg("user", answer);
+
+    if (step.field) {
+      const value = step.transform ? step.transform(answer) : answer;
+      data[step.field] = value;
+    }
+
+    const nextKey = step.next(answer);
+
+    if (nextKey === "send") {
+      sendLead();
+      return;
+    }
+
+    currentStep = STEPS.findIndex((s) => s.key === nextKey);
+    runStep();
+  }
+
+  async function sendLead() {
+    optionsEl.hidden = true;
+    input.parentElement!.hidden = true;
+
+    addMsg("assistant", "Enviando tus datos al equipo...");
+
+    try {
+      const res = await fetch("/api/lead-notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          installation_type: data.installation_type,
+          message: `[Chatbot] Municipio: ${data.municipality}. Tejado: ${data.own_roof}`,
+        }),
+      });
+
+      if (!res.ok) throw new Error("fail");
+
+      done = true;
+      addMsg("assistant", "Datos enviados. Un técnico de Hispalense Solar te contactará en menos de 24 horas con tu presupuesto personalizado. ¡Gracias!");
+    } catch {
+      addMsg("assistant", "Ha habido un problema al enviar. Puedes llamarnos directamente al 954 123 456 o escribirnos por WhatsApp.");
+    }
   }
 
   fab.addEventListener("click", () => {
     win.hidden = false;
     fab.hidden = true;
-    if (conversation.length === 0) {
-      conversation.push({ role: "assistant", content: GREETING });
-      addMessage("assistant", GREETING);
+    if (currentStep === 0 && messagesEl.children.length === 0) {
+      runStep();
     }
-    input.focus();
   });
 
   closeBtn.addEventListener("click", () => {
@@ -87,67 +215,12 @@ import Icon from "./Icon.astro";
     fab.hidden = false;
   });
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     const text = input.value.trim();
-    if (!text || leadSent) return;
-
-    addMessage("user", text);
-    conversation.push({ role: "user", content: text });
+    if (!text || done) return;
     input.value = "";
-    input.disabled = true;
-
-    addTyping();
-
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: conversation }),
-      });
-
-      removeTyping();
-
-      if (!res.ok) throw new Error("API error");
-
-      const { reply } = await res.json();
-
-      const leadMatch = reply.match(/\[LEAD_DATA\](.*?)\[\/LEAD_DATA\]/s);
-      const cleanReply = reply.replace(/\[LEAD_DATA\].*?\[\/LEAD_DATA\]/s, "").trim();
-
-      conversation.push({ role: "assistant", content: cleanReply });
-      addMessage("assistant", cleanReply);
-
-      if (leadMatch) {
-        try {
-          const lead = JSON.parse(leadMatch[1]);
-          leadSent = true;
-          input.disabled = true;
-          input.placeholder = "Conversación finalizada";
-
-          await fetch("/api/lead-notify", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: lead.name,
-              phone: lead.phone,
-              installation_type: lead.installation_type,
-              message: `[Chatbot] Municipio: ${lead.municipality}. Tejado propio: ${lead.own_roof ? "Sí" : "No"}`,
-            }),
-          });
-
-          addMessage("assistant", "He enviado tus datos al equipo. Te contactaremos en menos de 24 horas. ¡Gracias!");
-        } catch {
-          addMessage("assistant", "Ha habido un problema al enviar tus datos. Puedes llamarnos al 954 123 456.");
-        }
-      }
-    } catch {
-      removeTyping();
-      addMessage("assistant", "Perdona, ha habido un problema. Puedes llamarnos al 954 123 456 o escribirnos por WhatsApp.");
-    }
-
-    input.disabled = leadSent;
-    if (!leadSent) input.focus();
+    handleAnswer(text);
   });
 </script>
 
@@ -256,8 +329,8 @@ import Icon from "./Icon.astro";
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    min-height: 280px;
-    max-height: 360px;
+    min-height: 250px;
+    max-height: 320px;
   }
 
   .chat-messages :global(.msg) {
@@ -267,6 +340,7 @@ import Icon from "./Icon.astro";
     font-size: 0.9rem;
     line-height: 1.45;
     word-break: break-word;
+    white-space: pre-line;
   }
 
   .chat-messages :global(.msg-assistant) {
@@ -283,13 +357,30 @@ import Icon from "./Icon.astro";
     border-bottom-right-radius: 4px;
   }
 
-  .chat-messages :global(.typing) {
-    animation: pulse 1s infinite;
+  .chat-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem 0.75rem;
+    border-top: 1px solid #e6e9f0;
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+  .chat-options :global(.chat-option) {
+    background: var(--color-white);
+    border: 1.5px solid var(--color-navy);
+    color: var(--color-navy);
+    border-radius: 999px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .chat-options :global(.chat-option:hover) {
+    background: var(--color-navy);
+    color: var(--color-white);
   }
 
   .chat-input-form {
