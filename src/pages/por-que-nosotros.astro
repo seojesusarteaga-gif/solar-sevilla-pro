@@ -66,6 +66,36 @@ const stats = [
     ))
   }
 
+  <section class="section team-section section-alt">
+    <div class="container">
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2>Las personas detrás de tu instalación</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">AG</div>
+          <h3>Antonio García López</h3>
+          <span class="team-role">Técnico instalador senior</span>
+          <p>"Cada tejado es diferente. Mi trabajo es asegurarme de que la instalación rinda al máximo desde el primer día."</p>
+          <span class="team-exp">+15 años de experiencia en autoconsumo</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">MF</div>
+          <h3>María Fernández Ruiz</h3>
+          <span class="team-role">Responsable de atención al cliente</span>
+          <p>"Lo que más valoran nuestros clientes es que siempre pueden llamarnos. Resolvemos dudas antes y después de la instalación."</p>
+          <span class="team-exp">Gestión de +350 proyectos</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">CN</div>
+          <h3>Carlos Navarro Díaz</h3>
+          <span class="team-role">Ingeniero de proyectos</span>
+          <p>"Diseño cada instalación a medida del consumo real del cliente. No hay dos proyectos iguales."</p>
+          <span class="team-exp">Ingeniero RITE certificado</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section cta-section">
     <div class="container cta-inner">
       <div>
@@ -182,9 +212,80 @@ const stats = [
     margin: 0;
   }
 
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .team-card {
+    background: var(--color-white);
+    border: 1px solid #e6e9f0;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .team-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-solar-yellow);
+    font-weight: 800;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .team-card h3 {
+    color: var(--color-navy);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .team-role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-solar-yellow);
+    background: var(--color-navy);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .team-card p {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0.5rem 0 0;
+    max-width: 30ch;
+    line-height: 1.5;
+  }
+
+  .team-exp {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-top: 0.25rem;
+  }
+
   @media (max-width: 860px) {
     .stats-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>

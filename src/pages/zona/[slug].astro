@@ -132,6 +132,24 @@ const faqSchema = {
     </div>
   </section>
 
+  <section class="section map-section section-alt">
+    <div class="container">
+      <h2>Dónde trabajamos en {town.name}</h2>
+      <div class="map-wrapper">
+        <iframe
+          src={`https://www.google.com/maps?q=${encodeURIComponent(town.name + ', Sevilla, España')}&output=embed`}
+          width="100%"
+          height="350"
+          style="border:0;border-radius:12px"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={`Mapa de ${town.name}, Sevilla`}
+        ></iframe>
+      </div>
+      <a class="reviews-link" href="/contacto">Ver reseñas de Hispalense Solar →</a>
+    </div>
+  </section>
+
   <Faq items={town.faq} title={`Preguntas frecuentes sobre placas solares en ${town.name}`} />
 
   <section class="section related-articles">
@@ -336,6 +354,28 @@ const faqSchema = {
 
   .article-links a:hover {
     color: var(--color-navy-light);
+  }
+
+  .map-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .map-wrapper iframe {
+    display: block;
+  }
+
+  .reviews-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .reviews-link:hover {
+    text-decoration: underline;
+    color: var(--color-solar-yellow);
   }
 
   .back-section {

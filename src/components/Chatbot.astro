@@ -1,0 +1,365 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<div id="chatbot">
+  <button class="chat-fab" id="chat-fab" aria-label="Abrir chat">
+    <Icon name="chat" class="fab-icon" />
+  </button>
+
+  <div class="chat-window" id="chat-window" hidden>
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <Icon name="sun" class="chat-logo" />
+        <div>
+          <span class="chat-brand">Hispalense Solar</span>
+          <span class="chat-status">En línea</span>
+        </div>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Cerrar chat">
+        <Icon name="close" class="close-icon" />
+      </button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <form class="chat-input-form" id="chat-form">
+      <input
+        type="text"
+        class="chat-input"
+        id="chat-input"
+        placeholder="Escribe tu mensaje..."
+        autocomplete="off"
+      />
+      <button type="submit" class="chat-send" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const GREETING = "Hola, soy el asistente de Hispalense Solar. ¿Estás pensando en instalar placas solares? Te ayudo y te paso presupuesto sin compromiso.";
+
+  const fab = document.getElementById("chat-fab")!;
+  const win = document.getElementById("chat-window")!;
+  const closeBtn = document.getElementById("chat-close")!;
+  const messagesEl = document.getElementById("chat-messages")!;
+  const form = document.getElementById("chat-form") as HTMLFormElement;
+  const input = document.getElementById("chat-input") as HTMLInputElement;
+
+  let conversation: { role: string; content: string }[] = [];
+  let leadSent = false;
+
+  function addMessage(role: string, text: string) {
+    const div = document.createElement("div");
+    div.className = `msg msg-${role}`;
+    div.textContent = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function addTyping() {
+    const div = document.createElement("div");
+    div.className = "msg msg-assistant typing";
+    div.id = "typing";
+    div.textContent = "...";
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function removeTyping() {
+    document.getElementById("typing")?.remove();
+  }
+
+  fab.addEventListener("click", () => {
+    win.hidden = false;
+    fab.hidden = true;
+    if (conversation.length === 0) {
+      conversation.push({ role: "assistant", content: GREETING });
+      addMessage("assistant", GREETING);
+    }
+    input.focus();
+  });
+
+  closeBtn.addEventListener("click", () => {
+    win.hidden = true;
+    fab.hidden = false;
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text || leadSent) return;
+
+    addMessage("user", text);
+    conversation.push({ role: "user", content: text });
+    input.value = "";
+    input.disabled = true;
+
+    addTyping();
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: conversation }),
+      });
+
+      removeTyping();
+
+      if (!res.ok) throw new Error("API error");
+
+      const { reply } = await res.json();
+
+      const leadMatch = reply.match(/\[LEAD_DATA\](.*?)\[\/LEAD_DATA\]/s);
+      const cleanReply = reply.replace(/\[LEAD_DATA\].*?\[\/LEAD_DATA\]/s, "").trim();
+
+      conversation.push({ role: "assistant", content: cleanReply });
+      addMessage("assistant", cleanReply);
+
+      if (leadMatch) {
+        try {
+          const lead = JSON.parse(leadMatch[1]);
+          leadSent = true;
+          input.disabled = true;
+          input.placeholder = "Conversación finalizada";
+
+          await fetch("/api/lead-notify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: lead.name,
+              phone: lead.phone,
+              installation_type: lead.installation_type,
+              message: `[Chatbot] Municipio: ${lead.municipality}. Tejado propio: ${lead.own_roof ? "Sí" : "No"}`,
+            }),
+          });
+
+          addMessage("assistant", "He enviado tus datos al equipo. Te contactaremos en menos de 24 horas. ¡Gracias!");
+        } catch {
+          addMessage("assistant", "Ha habido un problema al enviar tus datos. Puedes llamarnos al 954 123 456.");
+        }
+      }
+    } catch {
+      removeTyping();
+      addMessage("assistant", "Perdona, ha habido un problema. Puedes llamarnos al 954 123 456 o escribirnos por WhatsApp.");
+    }
+
+    input.disabled = leadSent;
+    if (!leadSent) input.focus();
+  });
+</script>
+
+<style>
+  #chatbot {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 950;
+  }
+
+  .chat-fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .chat-fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .chat-fab :global(.fab-icon) {
+    width: 24px;
+    height: 24px;
+  }
+
+  .chat-window {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 380px;
+    max-height: 520px;
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1rem;
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .chat-header-info :global(.chat-logo) {
+    width: 28px;
+    height: 28px;
+    color: var(--color-solar-yellow);
+  }
+
+  .chat-brand {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .chat-status {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
+  .chat-close {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 0.25rem;
+    opacity: 0.7;
+  }
+
+  .chat-close:hover {
+    opacity: 1;
+  }
+
+  .chat-close :global(.close-icon) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 280px;
+    max-height: 360px;
+  }
+
+  .chat-messages :global(.msg) {
+    max-width: 85%;
+    padding: 0.65rem 0.9rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    word-break: break-word;
+  }
+
+  .chat-messages :global(.msg-assistant) {
+    align-self: flex-start;
+    background: var(--color-offwhite);
+    color: var(--color-navy);
+    border-bottom-left-radius: 4px;
+  }
+
+  .chat-messages :global(.msg-user) {
+    align-self: flex-end;
+    background: var(--color-navy);
+    color: var(--color-white);
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-messages :global(.typing) {
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .chat-input-form {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #e6e9f0;
+  }
+
+  .chat-input {
+    flex: 1;
+    border: 1px solid #e6e9f0;
+    border-radius: 8px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .chat-input:focus {
+    border-color: var(--color-navy);
+  }
+
+  .chat-send {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--color-navy);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .chat-send:hover {
+    background: var(--color-solar-yellow);
+    color: var(--color-navy);
+  }
+
+  .chat-send svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 860px) {
+    #chatbot {
+      bottom: 60px;
+      right: 16px;
+    }
+
+    .chat-window {
+      bottom: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      max-height: 70vh;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .chat-fab {
+      width: 48px;
+      height: 48px;
+    }
+
+    .chat-fab :global(.fab-icon) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
