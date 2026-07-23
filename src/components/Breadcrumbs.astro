@@ -10,15 +10,6 @@ interface Props {
 
 const { items } = Astro.props;
 
-const breadcrumbSchema = {
-  "@type": "BreadcrumbList",
-  itemListElement: items.map((item, i) => ({
-    "@type": "ListItem",
-    position: i + 1,
-    name: item.label,
-    ...(item.href ? { item: new URL(item.href, Astro.site).toString() } : {}),
-  })),
-};
 ---
 
 <nav class="breadcrumbs" aria-label="Migas de pan">
@@ -37,8 +28,6 @@ const breadcrumbSchema = {
     }
   </ol>
 </nav>
-
-<script type="application/ld+json" is:inline set:html={JSON.stringify({ "@context": "https://schema.org", ...breadcrumbSchema })} />
 
 <style>
   .breadcrumbs {

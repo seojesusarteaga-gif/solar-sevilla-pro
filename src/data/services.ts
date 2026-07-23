@@ -11,7 +11,7 @@ export const services = [
     summary:
       "Placas solares para viviendas unifamiliares, chalets y comunidades de vecinos, dimensionadas según tu consumo real.",
     image: {
-      src: "https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2",
+      src: "https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2?w=800&q=75&fm=webp&fit=crop",
       alt: "Vivienda con instalación de placas solares en el tejado en Sevilla",
       credit: "Vivint Solar / Unsplash",
     },
@@ -123,7 +123,7 @@ export const services = [
     summary:
       "Autoconsumo fotovoltaico para naves, oficinas, comercios y explotaciones agrícolas, con estudio de amortización previo.",
     image: {
-      src: "https://images.unsplash.com/photo-1782515875218-0cdfea5edd31",
+      src: "https://images.unsplash.com/photo-1782515875218-0cdfea5edd31?w=800&q=75&fm=webp&fit=crop",
       alt: "Nave industrial con placas solares instaladas en la cubierta",
       credit: "Julian Gojani / Unsplash",
     },
@@ -204,7 +204,7 @@ export const services = [
     summary:
       "Revisión periódica, limpieza y monitorización de instalaciones existentes para mantener el rendimiento y la garantía al día.",
     image: {
-      src: "https://images.unsplash.com/photo-1754619880959-2b0528375883",
+      src: "https://images.unsplash.com/photo-1754619880959-2b0528375883?w=800&q=75&fm=webp&fit=crop",
       alt: "Técnico realizando el mantenimiento y limpieza de placas solares",
       credit: "Florida Solar Fix / Unsplash",
     },

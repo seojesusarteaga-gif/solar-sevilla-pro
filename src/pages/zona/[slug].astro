@@ -52,6 +52,11 @@ const faqSchema = {
   title={`Placas Solares ${town.name} | ${site.name}`}
   description={`Instalación de placas solares en ${town.name}. Presupuesto gratuito en 24h, instaladores certificados y financiación disponible.`}
   extraSchema={[localBusinessSchema, faqSchema]}
+  breadcrumbs={[
+    { label: "Inicio", href: "/" },
+    { label: "Zona de cobertura", href: "/zona-cobertura" },
+    { label: town.name },
+  ]}
 >
   <div class="container">
     <Breadcrumbs items={[

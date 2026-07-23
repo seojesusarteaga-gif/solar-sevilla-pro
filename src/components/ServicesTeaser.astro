@@ -12,7 +12,7 @@ import { services } from "../data/services";
           <a class="card" href={`/servicios/${service.slug}`}>
             <img
               class="card-image"
-              src={`${service.image.src}?w=600&q=75&auto=format&fit=crop`}
+              src={service.image.src}
               alt={service.image.alt}
               loading="lazy"
               width="600"

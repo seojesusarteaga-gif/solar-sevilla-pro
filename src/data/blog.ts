@@ -6,7 +6,7 @@ export const posts = [
       "Bonificación del IBI, la nueva deducción del IRPF y qué ha pasado con las ayudas Next Generation EU en Andalucía.",
     date: "6 de julio de 2026",
     image: {
-      src: "https://images.unsplash.com/photo-1637417494521-78b4d1d33029",
+      src: "https://images.unsplash.com/photo-1637417494521-78b4d1d33029?w=800&q=75&fm=webp&fit=crop",
       alt: "Vivienda con placas solares que puede acogerse a las ayudas de autoconsumo en Sevilla",
       credit: "Markus Winkler / Unsplash",
     },
@@ -18,7 +18,7 @@ export const posts = [
       "Pagar al contado, financiar la instalación o combinarlo con las ayudas disponibles: qué opción te conviene.",
     date: "3 de julio de 2026",
     image: {
-      src: "https://images.unsplash.com/photo-1655300256335-beef51a914fe",
+      src: "https://images.unsplash.com/photo-1655300256335-beef51a914fe?w=800&q=75&fm=webp&fit=crop",
       alt: "Vivienda con placas solares instaladas, ejemplo de inversión en autoconsumo",
       credit: "Watt A Lot / Unsplash",
     },
@@ -30,7 +30,7 @@ export const posts = [
       "Los factores que determinan el plazo de amortización de tu instalación y cómo lo calculamos en tu presupuesto.",
     date: "29 de junio de 2026",
     image: {
-      src: "https://images.unsplash.com/photo-1463173904305-ba479d2123b7",
+      src: "https://images.unsplash.com/photo-1463173904305-ba479d2123b7?w=800&q=75&fm=webp&fit=crop",
       alt: "Placa solar al atardecer, símbolo del ahorro y la amortización a largo plazo",
       credit: "Karsten Würth / Unsplash",
     },
@@ -42,7 +42,7 @@ export const posts = [
       "Qué revisar, con qué frecuencia y qué señales indican que tu instalación necesita una revisión.",
     date: "23 de junio de 2026",
     image: {
-      src: "https://images.unsplash.com/photo-1694327671725-e2a81cda3436",
+      src: "https://images.unsplash.com/photo-1694327671725-e2a81cda3436?w=800&q=75&fm=webp&fit=crop",
       alt: "Filas de placas solares instaladas en un tejado residencial",
       credit: "Michael Pointner / Unsplash",
     },

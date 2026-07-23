@@ -50,6 +50,11 @@ const faqSchema = {
   title={service.metaTitle}
   description={service.metaDescription}
   extraSchema={[serviceSchema, faqSchema]}
+  breadcrumbs={[
+    { label: "Inicio", href: "/" },
+    { label: "Servicios", href: "/servicios" },
+    { label: service.title },
+  ]}
 >
   <div class="container">
     <Breadcrumbs items={[
@@ -70,7 +75,7 @@ const faqSchema = {
       </div>
       <img
         class="intro-image"
-        src={`${service.image.src}?w=700&q=60&auto=format&fit=crop`}
+        src={service.image.src}
         alt={service.image.alt}
         width="900"
         height="600"

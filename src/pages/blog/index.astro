@@ -26,7 +26,7 @@ import { site } from "../../data/site";
           <a class="card" href={`/blog/${post.slug}`}>
             <img
               class="card-image"
-              src={`${post.image.src}?w=600&q=75&auto=format&fit=crop`}
+              src={post.image.src}
               alt={post.image.alt}
               loading="lazy"
               width="600"

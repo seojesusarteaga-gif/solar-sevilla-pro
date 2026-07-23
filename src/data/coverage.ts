@@ -27,7 +27,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Con más de 140.000 habitantes, Dos Hermanas es el segundo municipio de la provincia y combina un consumo eléctrico residencial elevado con un tejido industrial que también puede beneficiarse del autoconsumo. Una vivienda media de la zona con una factura de 100-160 €/mes puede cubrir una parte importante de su consumo con una instalación de tamaño estándar; el perfil de cliente más habitual es la vivienda unifamiliar o el adosado con tejado propio.",
     image: {
-      src: "https://images.unsplash.com/photo-1763401929055-43fd29000be3?w=650&q=55&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1763401929055-43fd29000be3?w=800&q=75&fm=webp&fit=crop",
       alt: "Vista aérea de tejados residenciales con placas solares en Dos Hermanas",
       credit: "Juan Pablo / Unsplash",
     },
@@ -66,7 +66,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Alcalá de Guadaíra es el tercer municipio más poblado de la provincia, con un crecimiento urbanístico sostenido de vivienda unifamiliar. El perfil de cliente típico es una familia con una factura eléctrica media de 90-140 €/mes en una vivienda con parcela y tejado propio, casi siempre con una orientación favorable por tratarse de construcciones recientes.",
     image: {
-      src: "https://images.unsplash.com/photo-1583345237708-add35a664d77?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1583345237708-add35a664d77?w=800&q=75&fm=webp&fit=crop",
       alt: "Vivienda unifamiliar con placas solares en el tejado al atardecer en Alcalá de Guadaíra",
       credit: "Giorgio Trovato / Unsplash",
     },
@@ -105,7 +105,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Utrera combina población urbana con un entorno agrícola y ganadero muy activo. El perfil de cliente más habitual incluye tanto viviendas familiares con facturas de 80-130 €/mes como explotaciones agrícolas con consumos mucho más altos por el riego y la maquinaria, donde el autoconsumo industrial tiene un retorno especialmente rápido.",
     image: {
-      src: "https://images.unsplash.com/photo-1761815139336-40b16b4cb8ee?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1761815139336-40b16b4cb8ee?w=800&q=75&fm=webp&fit=crop",
       alt: "Naves agrícolas con placas solares en un entorno rural en Utrera",
       credit: "Sergej / Unsplash",
     },
@@ -144,7 +144,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Écija registra algunas de las temperaturas y horas de sol más altas de España, lo que da un rendimiento por panel superior a la media. El perfil de cliente típico combina viviendas familiares con facturas de 90-150 €/mes —más altas de lo habitual por el uso intensivo de aire acondicionado en verano— y explotaciones agrícolas del entorno.",
     image: {
-      src: "https://images.unsplash.com/photo-1574360773950-133867861ae9?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1574360773950-133867861ae9?w=800&q=75&fm=webp&fit=crop",
       alt: "Primer plano de placas solares azules bajo el intenso sol de Écija",
       credit: "Michael Wilson / Unsplash",
     },
@@ -183,7 +183,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Mairena del Aljarafe es uno de los municipios más poblados del Aljarafe, con un parque de vivienda relativamente joven. El cliente típico es una familia con una factura media de 90-140 €/mes en una vivienda de cubierta plana, muy adecuada para optimizar la orientación de los paneles.",
     image: {
-      src: "https://images.unsplash.com/photo-1630608354129-6a7704150401?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1630608354129-6a7704150401?w=800&q=75&fm=webp&fit=crop",
       alt: "Vivienda moderna con placas solares en el tejado en Mairena del Aljarafe",
       credit: "Mischa Frank / Unsplash",
     },
@@ -222,7 +222,7 @@ export const provinceMunicipalities = [
     solarFit:
       "La Rinconada combina barrios residenciales consolidados, como San José de la Rinconada, con polígonos industriales de buen tamaño. El perfil de cliente incluye tanto viviendas con facturas de 90-140 €/mes como naves industriales con consumos mucho más elevados.",
     image: {
-      src: "https://images.unsplash.com/photo-1778575455305-94709790286c?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1778575455305-94709790286c?w=800&q=75&fm=webp&fit=crop",
       alt: "Tejados industriales con placas solares rodeados de vegetación en La Rinconada",
       credit: "ftodne / Unsplash",
     },
@@ -261,7 +261,7 @@ export const provinceMunicipalities = [
     solarFit:
       "La economía de Los Palacios y Villafranca está muy ligada al cultivo del arroz en las marismas del Guadalquivir. El perfil de cliente más rentable suele ser la explotación agrícola con bombeos de riego, donde el consumo eléctrico diurno encaja muy bien con la producción solar.",
     image: {
-      src: "https://images.unsplash.com/photo-1774280482012-3082962ec615?w=650&q=55&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1774280482012-3082962ec615?w=800&q=75&fm=webp&fit=crop",
       alt: "Casa de campo con placas solares en el entorno agrícola de Los Palacios y Villafranca",
       credit: "Sergej / Unsplash",
     },
@@ -300,7 +300,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Coria del Río es una localidad residencial en crecimiento junto al Guadalquivir. El cliente típico es una vivienda unifamiliar con una factura media de 80-130 €/mes, aunque también trabajamos con comercios locales que buscan reducir sus costes energéticos con instalaciones de menor potencia.",
     image: {
-      src: "https://images.unsplash.com/photo-1777442888788-5d5e9c03ac71?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1777442888788-5d5e9c03ac71?w=800&q=75&fm=webp&fit=crop",
       alt: "Vivienda con árbol en flor y placas solares en el tejado en Coria del Río",
       credit: "Sergej / Unsplash",
     },
@@ -338,7 +338,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Al estar prácticamente pegada a Sevilla capital, Camas tiene una trama residencial densa donde predominan las comunidades de vecinos y los adosados. El perfil de cliente más habitual es una instalación residencial de tamaño medio, con facturas de 80-130 €/mes, o proyectos de autoconsumo colectivo en comunidades de vecinos.",
     image: {
-      src: "https://images.unsplash.com/photo-1761494666841-dec7dc336e83?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1761494666841-dec7dc336e83?w=800&q=75&fm=webp&fit=crop",
       alt: "Vivienda con garajes y placas solares en el tejado en una calle residencial de Camas",
       credit: "noe fornells / Unsplash",
     },
@@ -377,7 +377,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Tomares tiene una de las rentas per cápita más altas de Andalucía, con viviendas unifamiliares de gran superficie y tejados amplios. El perfil de cliente típico busca instalaciones de mayor potencia, a menudo combinadas con batería, con facturas eléctricas que superan con frecuencia los 150 €/mes.",
     image: {
-      src: "https://images.unsplash.com/photo-1655300283246-1ef0317a565d?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1655300283246-1ef0317a565d?w=800&q=75&fm=webp&fit=crop",
       alt: "Placas solares en el tejado de una vivienda unifamiliar de gran tamaño en Tomares",
       credit: "Watt A Lot / Unsplash",
     },
@@ -416,7 +416,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Carmona combina un casco histórico con normativa de protección y zonas de expansión residencial e industrial sin esa limitación. El perfil de cliente varía mucho según la zona: viviendas familiares con facturas de 90-140 €/mes fuera del casco histórico, y naves industriales junto a la A-4 con consumos más elevados.",
     image: {
-      src: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&q=75&fm=webp&fit=crop",
       alt: "Placas solares en blanco y negro sobre un tejado en Carmona",
       credit: "Nuno Marques / Unsplash",
     },
@@ -455,7 +455,7 @@ export const provinceMunicipalities = [
     solarFit:
       "Morón de la Frontera tiene una economía agrícola y ganadera importante, además de la actividad vinculada a la base aérea. El perfil de cliente más habitual combina viviendas familiares con facturas de 80-130 €/mes y explotaciones agropecuarias que pueden amortizar rápido una instalación de autoconsumo industrial.",
     image: {
-      src: "https://images.unsplash.com/photo-1721620845374-1cef4ceae9cf?w=700&q=60&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1721620845374-1cef4ceae9cf?w=800&q=75&fm=webp&fit=crop",
       alt: "Placa solar en un tejado con un arcoíris de fondo en Morón de la Frontera",
       credit: "Joshua Bowers / Unsplash",
     },
